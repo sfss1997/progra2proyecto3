@@ -55,8 +55,8 @@ public class FXMLDocumentController implements Initializable {
     private void x() {
 
         Runnable runnable = () -> {
-            for (int i = 0; i < 6; i++) {
-                for (int j = 0; j < 8; j++) {
+            for (int i = 0; i < this.logic.cell.length; i++) {
+                for (int j = 0; j < this.logic.cell[0].length; j++) {
                     Image imageView = this.logic.cell[i][j].getImageView();
                     int y = this.logic.cell[i][j].getRow() *100;
                     int x = this.logic.cell[i][j].getColumn() *100;
@@ -72,7 +72,6 @@ public class FXMLDocumentController implements Initializable {
         };
         Thread t = new Thread(runnable);
         t.start();
-//        Platform.runLater(runnable);
     }
 
 }
