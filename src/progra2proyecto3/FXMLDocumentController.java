@@ -11,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 /**
  *
@@ -19,17 +21,18 @@ import javafx.scene.control.Label;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    private Label label;
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+    AnchorPane anchorPane;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+         ImageView imageView = new ImageView("newpackage/4afb8339-9594-4917-95d2-2336c1369c2e.png");
+        imageView.setLayoutX(300);
+        imageView.setLayoutY(300);
+        imageView.setFitHeight(100);
+        imageView.setFitWidth(100);
+        
+        anchorPane.getChildren().add(imageView);
     }    
     
 }
