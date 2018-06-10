@@ -5,6 +5,7 @@
  */
 package progra2proyecto3;
 
+import domain.Logic;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -28,6 +29,8 @@ import javafx.util.Duration;
  */
 public class FXMLDocumentController implements Initializable {
 
+    private Logic logic;
+    
     @FXML
     AnchorPane anchorPane;
     @FXML
@@ -36,7 +39,9 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-x();
+        this.logic = new Logic();
+        this.logic.createGridPane();
+        x();
         Image imageView = new Image("newpackage/4afb8339-9594-4917-95d2-2336c1369c2e.png");
 
         caca.getGraphicsContext2D().drawImage(imageView, 0, 0);
@@ -54,9 +59,9 @@ x();
         Runnable runnable = () -> {
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 8; j++) {
-                    Image imageView = new Image("images/tierra.png");
-                    caca.getGraphicsContext2D().drawImage(imageView, j*100, i*100);
-                    
+                    Image imageView = this.logic.cell[i][j].getImageView();
+                    caca.getGraphicsContext2D().drawImage(imageView, j * 100, i * 100);
+
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException ex) {
