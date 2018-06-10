@@ -14,7 +14,9 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
@@ -28,25 +30,23 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     AnchorPane anchorPane;
+    @FXML
+    private Canvas caca;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 x();
-        ImageView imageView = new ImageView("newpackage/4afb8339-9594-4917-95d2-2336c1369c2e.png");
-        imageView.setLayoutX(2 * 100);
-        imageView.setLayoutY(2 * 100);
-        imageView.setFitHeight(100);
-        imageView.setFitWidth(100);
+        Image imageView = new Image("newpackage/4afb8339-9594-4917-95d2-2336c1369c2e.png");
 
-        anchorPane.getChildren().add(imageView);
+        caca.getGraphicsContext2D().drawImage(imageView, 0, 0);
 
-        Line line1 = new Line(2 * 100, 2 * 100, 4 * 100, 2 * 100);
-        PathTransition pathTransitionBubble = new PathTransition();
-        pathTransitionBubble.setNode(imageView);
-        pathTransitionBubble.setDuration(Duration.seconds(1));
-        pathTransitionBubble.setPath(line1);
-        pathTransitionBubble.play();
+//        Line line1 = new Line(2 * 100, 2 * 100, 4 * 100, 2 * 100);
+//        PathTransition pathTransitionBubble = new PathTransition();
+//        pathTransitionBubble.setNode(imageView);
+//        pathTransitionBubble.setDuration(Duration.seconds(1));
+//        pathTransitionBubble.setPath(line1);
+//        pathTransitionBubble.play();
     }
 
     private void x() {
@@ -54,12 +54,9 @@ x();
         Runnable runnable = () -> {
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 8; j++) {
-                    ImageView imageView = new ImageView("images/tierra.png");
-                    imageView.setLayoutX(j * 100);
-                    imageView.setLayoutY(i * 100);
-                    imageView.setFitHeight(100);
-                    imageView.setFitWidth(100);
-                    anchorPane.getChildren().add(imageView);
+                    Image imageView = new Image("images/tierra.png");
+                    caca.getGraphicsContext2D().drawImage(imageView, j*100, i*100);
+                    
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException ex) {
@@ -68,9 +65,9 @@ x();
                 }
             }
         };
-//        Thread t = new Thread(runnable);
-//        t.start();
-        Platform.runLater(runnable);
+        Thread t = new Thread(runnable);
+        t.start();
+//        Platform.runLater(runnable);
     }
 
 }
