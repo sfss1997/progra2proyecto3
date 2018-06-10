@@ -32,8 +32,6 @@ public class FXMLDocumentController implements Initializable {
     private Logic logic;
     
     @FXML
-    AnchorPane anchorPane;
-    @FXML
     private Canvas caca;
 
     @Override
@@ -60,7 +58,9 @@ public class FXMLDocumentController implements Initializable {
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 8; j++) {
                     Image imageView = this.logic.cell[i][j].getImageView();
-                    caca.getGraphicsContext2D().drawImage(imageView, j * 100, i * 100);
+                    int y = this.logic.cell[i][j].getRow() *100;
+                    int x = this.logic.cell[i][j].getColumn() *100;
+                    caca.getGraphicsContext2D().drawImage(imageView, x, y);
 
                     try {
                         Thread.sleep(1000);
