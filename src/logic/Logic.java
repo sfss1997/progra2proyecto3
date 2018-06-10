@@ -28,7 +28,7 @@ public class Logic {
 
     private void init() {
         if (cell == null) {
-            this.cell = new Cell[10][10];
+            this.cell = new Cell[6][8];
             this.playerRow = 3;
             this.playerColumn = 3;
         }
@@ -42,10 +42,9 @@ public class Logic {
      * @param cell
      * @return Retorna el GridPane
      */
-    public void createCell() {
-        GridPane newGridPane = new GridPane();
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
+    public void createGridPane() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 8; j++) {
                 cell[i][j] = new Cell();
                 cell[i][j].setRow(i);
                 cell[i][j].setColumn(j);
@@ -83,60 +82,60 @@ public class Logic {
         return false;
     }
 
-    public void playerUp() {
-        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(0);
-        if (this.playerRow > 0 && this.cell[this.playerRow - 1][this.playerColumn].getID() == 0) {
-            this.playerRow--;
-        }
-        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(2);
-    }
-
-    public void playerDown() {
-        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(0);
-        if (playerRow < this.cell.length - 1 && this.cell[this.playerRow + 1][this.playerColumn].getID() == 0) {
-            this.playerRow++;
-        }
-        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(2);
-    }
-
-    public void playerLeft() {
-        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(0);
-        if (this.playerColumn > 0 && this.cell[this.playerRow][this.playerColumn - 1].getID() == 0) {
-            this.playerColumn--;
-        }
-        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(2);
-    }
-
-    public void playerRight() {
-        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(0);
-        if (playerColumn < this.cell[0].length - 1 && this.cell[this.playerRow][this.playerColumn + 1].getID() == 0) {
-            this.playerColumn++;
-        }
-        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(2);
-    }
-
-    public void removeEarthUp() {
-        if (this.playerRow > 0 && this.cell[this.playerRow - 1][this.playerColumn].getID() == 1) {
-            this.cell[this.playerRow - 1][this.playerColumn].setIdAndImageView(0);
-        }
-    }
-    
-    public void removeEarthDown(){
-        if (playerRow < this.cell.length - 1 && this.cell[this.playerRow + 1][this.playerColumn].getID() == 1) {
-            this.cell[this.playerRow + 1][this.playerColumn].setIdAndImageView(0);
-        }
-    }
-
-    public void removeEarthLeft() {
-        if (this.playerColumn > 0 && this.cell[this.playerRow][this.playerColumn - 1].getID() == 1) {
-            this.cell[this.playerRow][this.playerColumn - 1].setIdAndImageView(0);
-        }
-    }
-
-    public void removeEarthRight() {
-        if (playerColumn < this.cell[0].length - 1 && this.cell[this.playerRow][this.playerColumn + 1].getID() == 1) {
-            this.cell[this.playerRow][this.playerColumn + 1].setIdAndImageView(0);
-        }
-    }
+//    public void playerUp() {
+//        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(0);
+//        if (this.playerRow > 0 && this.cell[this.playerRow - 1][this.playerColumn].getID() == 0) {
+//            this.playerRow--;
+//        }
+//        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(2);
+//    }
+//
+//    public void playerDown() {
+//        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(0);
+//        if (playerRow < this.cell.length - 1 && this.cell[this.playerRow + 1][this.playerColumn].getID() == 0) {
+//            this.playerRow++;
+//        }
+//        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(2);
+//    }
+//
+//    public void playerLeft() {
+//        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(0);
+//        if (this.playerColumn > 0 && this.cell[this.playerRow][this.playerColumn - 1].getID() == 0) {
+//            this.playerColumn--;
+//        }
+//        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(2);
+//    }
+//
+//    public void playerRight() {
+//        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(0);
+//        if (playerColumn < this.cell[0].length - 1 && this.cell[this.playerRow][this.playerColumn + 1].getID() == 0) {
+//            this.playerColumn++;
+//        }
+//        this.cell[this.playerRow][this.playerColumn].setIdAndImageView(2);
+//    }
+//
+//    public void removeEarthUp() {
+//        if (this.playerRow > 0 && this.cell[this.playerRow - 1][this.playerColumn].getID() == 1) {
+//            this.cell[this.playerRow - 1][this.playerColumn].setIdAndImageView(0);
+//        }
+//    }
+//    
+//    public void removeEarthDown(){
+//        if (playerRow < this.cell.length - 1 && this.cell[this.playerRow + 1][this.playerColumn].getID() == 1) {
+//            this.cell[this.playerRow + 1][this.playerColumn].setIdAndImageView(0);
+//        }
+//    }
+//
+//    public void removeEarthLeft() {
+//        if (this.playerColumn > 0 && this.cell[this.playerRow][this.playerColumn - 1].getID() == 1) {
+//            this.cell[this.playerRow][this.playerColumn - 1].setIdAndImageView(0);
+//        }
+//    }
+//
+//    public void removeEarthRight() {
+//        if (playerColumn < this.cell[0].length - 1 && this.cell[this.playerRow][this.playerColumn + 1].getID() == 1) {
+//            this.cell[this.playerRow][this.playerColumn + 1].setIdAndImageView(0);
+//        }
+//    }
 
 }

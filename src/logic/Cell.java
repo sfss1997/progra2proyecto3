@@ -8,6 +8,7 @@ package logic;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javax.xml.parsers.ParserConfigurationException;
@@ -18,7 +19,7 @@ import javax.xml.parsers.ParserConfigurationException;
  */
 public class Cell extends Pane {
 
-    private ImageView imageView;
+    private Image imageView;
     private int id;
     private int row;
     private int column;
@@ -26,8 +27,7 @@ public class Cell extends Pane {
     public Cell() {
         setStyle("-fx-border-color : black");
         this.setPrefSize(100, 100);
-        this.imageView = new ImageView("/images/tierra.png");
-        this.getChildren().add(imageView);
+        this.imageView = new Image("/images/tierra.png");
         this.id = 1;
     }
 
@@ -47,14 +47,12 @@ public class Cell extends Pane {
         this.column = column;
     }
 
-    public ImageView getImageView() {
+    public Image getImageView() {
         return imageView;
     }
 
-    public void setImageView(ImageView imageView) {
+    public void setImageView(Image imageView) {
         this.imageView = imageView;
-        this.getChildren().clear();
-        this.getChildren().add(this.imageView);
     }
 
     public int getID() {
@@ -64,27 +62,27 @@ public class Cell extends Pane {
     public void setId(int id) {
         this.id = id;
     }
-
+    
     public void setIdAndImageView(int id) {
-//        if (id == 0) {
-//            this.id = 0;
-//            this.getChildren().clear();
-//        } else if (id == 1) {
-//            this.id = id;
-//            this.getChildren().clear();
-//            this.imageView = new ImageView("/Images/fondonegro.png");
-//            this.getChildren().add(imageView);
-//        } else if (id == 2) {
-//            this.id = id;
-//            this.getChildren().clear();
-//            this.imageView = new ImageView("/Images/right2.gif");
-//            this.getChildren().add(imageView);
-//        } else if (id == 3) {
-//            this.id = id;
-//            this.getChildren().clear();
-//            this.imageView = new ImageView("/Images/ghost.gif");
-//            this.getChildren().add(imageView);
-//        }
+        if (id == 0) {
+            this.getChildren().clear();
+            this.id = 0;
+            this.imageView = null;
+        } else if (id == 1) {
+            this.getChildren().clear();
+            this.id = id;
+            this.imageView = new Image("/images/tierra.png");
+        } else if (id == 2) {
+            this.getChildren().clear();
+            this.id = id;
+            this.imageView = new Image("/images/right2.gif");
+        } else if (id == 3) {
+            this.getChildren().clear();
+            this.id = id;
+            this.imageView = new Image("/images/ghost.gif");
+        }
     }
+
+    
 
 }
