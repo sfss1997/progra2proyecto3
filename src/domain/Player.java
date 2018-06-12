@@ -128,27 +128,35 @@ public class Player {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     public void removeEarthUp() {
-        if (this.playerRow > 0 && this.logic.cell[this.playerRow - 1][this.playerColumn].getID() == 9) {
+        int idPlayer = this.logic.cell[this.playerRow][this.playerColumn].getID();
+        if (this.playerRow > 0 && this.logic.cell[this.playerRow - 1][this.playerColumn].getID() == 9 
+                && (idPlayer == 5 || idPlayer ==6)) {
             this.logic.cell[this.playerRow - 1][this.playerColumn].setIdAndImage(0);
         }
     }
 
     public void removeEarthDown() {
-        if (playerRow < this.logic.cell.length - 1 && this.logic.cell[this.playerRow + 1][this.playerColumn].getID() == 9) {
+        int idPlayer = this.logic.cell[this.playerRow][this.playerColumn].getID();
+        if (playerRow < this.logic.cell.length - 1 && this.logic.cell[this.playerRow + 1][this.playerColumn].getID() == 9
+                && (idPlayer == 5 || idPlayer ==6)) {
             this.logic.cell[this.playerRow + 1][this.playerColumn].setIdAndImage(0);
         }
     }
 
     public void removeEarthLeft() {
-        if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 9) {
+        int idPlayer = this.logic.cell[this.playerRow][this.playerColumn].getID();
+        if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 9
+                && (idPlayer == 5 || idPlayer ==6)) {
             this.logic.cell[this.playerRow][this.playerColumn - 1].setIdAndImage(0);
         }
     }
 
     public void removeEarthRight() {
-        if (playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 9) {
+        int idPlayer = this.logic.cell[this.playerRow][this.playerColumn].getID();
+        if (playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 9
+                && (idPlayer == 5 || idPlayer ==6)) {
             this.logic.cell[this.playerRow][this.playerColumn + 1].setIdAndImage(0);
         }
     }
