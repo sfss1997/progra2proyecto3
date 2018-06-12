@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: #000000; -fx-background-image: url('images/MENU3.png');" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="progra2proyecto3.MenuController">
+   <children>
+     
+      <Button layoutX="424.0" layoutY="239.0" mnemonicParsing="false" onAction="#StartButton" opacity="0.6" style="-fx-background-color: #db2f05;" text="Start" textFill="WHITE" />
+     
+   </children>
+</AnchorPane>
