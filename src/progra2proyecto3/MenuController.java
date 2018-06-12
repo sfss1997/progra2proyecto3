@@ -88,7 +88,7 @@ public class MenuController implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         
         window.setScene(tableViewScene);
-        
+        window.setResizable(false);
         window.show();
     }
     
