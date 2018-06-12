@@ -44,27 +44,27 @@ public class Player {
         PlayerWay playerWay = this.logic.cell[playerRow][playerColumn].getPlayerWay();
         if (i == 1 && playerWay == playerWay.RIGHT) {
             this.weapon = 1;
-            this.way = this.way.RIGHT;
+            this.way = PlayerWay.RIGHT;
             this.logic.cell[playerRow][playerColumn].setIdAndImage(1);
         } else if (i == 1 && playerWay == playerWay.LEFT) {
             this.weapon = 1;
-            this.way = this.way.LEFT;
+            this.way = PlayerWay.LEFT;
             this.logic.cell[playerRow][playerColumn].setIdAndImage(2);
         } else if (i == 2 && playerWay == playerWay.RIGHT) {
             this.weapon = 2;
-            this.way = this.way.RIGHT;
+            this.way = PlayerWay.RIGHT;
             this.logic.cell[playerRow][playerColumn].setIdAndImage(3);
         } else if (i == 2 && playerWay == playerWay.LEFT) {
             this.weapon = 2;
-            this.way = this.way.LEFT;
+            this.way = PlayerWay.LEFT;
             this.logic.cell[playerRow][playerColumn].setIdAndImage(4);
         } else if (i == 3 && playerWay == playerWay.RIGHT) {
             this.weapon = 3;
-            this.way = this.way.RIGHT;
+            this.way = PlayerWay.RIGHT;
             this.logic.cell[playerRow][playerColumn].setIdAndImage(5);
         } else if (i == 3 && playerWay == playerWay.LEFT) {
             this.weapon = 3;
-            this.way = this.way.LEFT;
+            this.way = PlayerWay.LEFT;
             this.logic.cell[playerRow][playerColumn].setIdAndImage(6);
         }
     }
@@ -114,7 +114,7 @@ public class Player {
         if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 9) {
             this.playerColumn--;
         }
-        playerWay(this.weapon, this.way);
+        playerWay(this.weapon, PlayerWay.LEFT);
     }
 
     public void playerRight() {
@@ -122,7 +122,7 @@ public class Player {
         if (playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 9) {
             this.playerColumn++;
         }
-        playerWay(this.weapon, this.way);
+        playerWay(this.weapon, PlayerWay.RIGHT);
     }
 
     public void removeEarthUp() {
