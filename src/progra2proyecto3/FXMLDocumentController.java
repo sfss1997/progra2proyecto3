@@ -108,15 +108,19 @@ public class FXMLDocumentController implements Initializable {
                 updateInterface();
             }
 
-//            if(e.isControlDown() && e.getCode() == KeyCode.RIGHT){
-//                this.player.removeEarthRight();
-//            } else if(e.isControlDown() && e.getCode() == KeyCode.LEFT){
-//                this.player.removeEarthLeft();
-//            } else if(e.isControlDown() && e.getCode() == KeyCode.UP){
-//                this.player.removeEarthUp();
-//            } else if(e.isControlDown() && e.getCode() == KeyCode.DOWN){
-//                this.player.removeEarthDown();
-//            }
+            if(e.isControlDown() && e.getCode() == KeyCode.RIGHT){
+                this.player.removeEarthRight();
+                updateInterface();
+            } else if(e.isControlDown() && e.getCode() == KeyCode.LEFT){
+                this.player.removeEarthLeft();
+                updateInterface();
+            } else if(e.isControlDown() && e.getCode() == KeyCode.UP){
+                this.player.removeEarthUp();
+                updateInterface();
+            } else if(e.isControlDown() && e.getCode() == KeyCode.DOWN){
+                this.player.removeEarthDown();
+                updateInterface();
+            }
         });
 
     }
