@@ -25,6 +25,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
+import static logic.Logic.configuration;
 
 /**
  *
@@ -32,7 +33,7 @@ import javafx.util.Duration;
  */
 public class FXMLDocumentController implements Initializable {
 
-    private Logic logic;
+    private static Logic logic;
     private Player player;
     private Hilo zombie;
 
@@ -44,7 +45,11 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
         this.logic = new Logic();
+        this.anchorPane.setPrefSize(configuration.getWidth()*75, configuration.getHeight()*75);
+        this.caca.setHeight(configuration.getHeight()*75); 
+        this.caca.setWidth(configuration.getWidth()*75);
         this.logic.createGridPane();
         this.player = new Player(2, 2);
         updateInterface();
@@ -64,13 +69,13 @@ public class FXMLDocumentController implements Initializable {
 
     private void updateInterface() {
 
-        caca.getGraphicsContext2D().clearRect(0, 0, 800, 600);
+        caca.getGraphicsContext2D().clearRect(0, 0, configuration.getWidth()*75, configuration.getHeight()*75);
         for (int i = 0; i < this.logic.cell.length; i++) {
             for (int j = 0; j < this.logic.cell[0].length; j++) {
 
                 Image imageView = this.logic.cell[i][j].getImage();
-                int y = this.logic.cell[i][j].getRow() * 100;
-                int x = this.logic.cell[i][j].getColumn() * 100;
+                int y = this.logic.cell[i][j].getRow() * 75;
+                int x = this.logic.cell[i][j].getColumn() * 75;
 
                 caca.getGraphicsContext2D().drawImage(imageView, x, y);
 

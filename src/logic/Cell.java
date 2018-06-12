@@ -27,7 +27,7 @@ public class Cell extends Pane {
 
     public Cell() {
         setStyle("-fx-border-color : black");
-        this.setPrefSize(100, 100);
+        this.setPrefSize(75, 75);
         this.image = new Image("/images/tierra.png");
         this.id = 9;
         this.playerWay = PlayerWay.LEFT;
