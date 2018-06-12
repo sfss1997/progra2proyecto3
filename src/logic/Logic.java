@@ -32,7 +32,7 @@ public class Logic {
 
     private void init() {
         if (cell == null) {
-            this.cell = new Cell[6][8];
+            this.cell = new Cell[configuration.getHeight()][configuration.getWidth()];
             this.playerRow = 3;
             this.playerColumn = 3;
         }
@@ -47,8 +47,8 @@ public class Logic {
      * @return Retorna el GridPane
      */
     public void createGridPane() {
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < configuration.getHeight(); i++) {
+            for (int j = 0; j < configuration.getWidth(); j++) {
                 cell[i][j] = new Cell();
                 cell[i][j].setRow(i);
                 cell[i][j].setColumn(j);
