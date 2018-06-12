@@ -5,6 +5,7 @@
  */
 package logic;
 
+import domain.Configuration;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -22,6 +23,9 @@ public class Logic {
     private static int playerRow;
     private static int playerColumn;
 
+    public static Configuration configuration = new Configuration();
+    
+    
     public Logic() {
         init();
     }

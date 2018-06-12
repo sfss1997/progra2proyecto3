@@ -23,7 +23,7 @@ import org.json.simple.parser.ParseException;
  */
 public class ReadFiles {
     
-    public Configuration readJsonFiles(String difficulty) throws IOException, ParseException{
+    public Configuration readJsonFiles(String file) throws IOException, ParseException{
        
         Configuration configuration = new Configuration();
         ProbabilitiesConfiguration probabilities = new ProbabilitiesConfiguration();
@@ -32,24 +32,10 @@ public class ReadFiles {
         ZombieConfiguration zombie = new ZombieConfiguration();
         
         
-        String url = ""; 
-        switch(difficulty){
-            case "Easy":
-                url="easy.json";
-            break;
-            case "Normal":
-                url="normal.json";
-            break;
-            case "Hard":
-                url="hard.json";
-            break;
-            case "Nightmare":
-                url="nightmare.json";
-            break;
-        }
+        
        
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader(url));
+        Object obj = parser.parse(new FileReader(file));
         
         JSONObject jsonObject = (JSONObject) obj;
         configuration.setSaveFile(jsonObject.get("saveFile").toString());

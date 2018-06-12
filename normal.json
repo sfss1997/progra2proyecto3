@@ -1,0 +1,32 @@
+{
+  "saveFile": "C:\\minerider.json",
+  "width": 60,
+  "height": 80,
+  "type": "random",
+  "probabilities": {
+    "stone": 5,
+    "zombie": 2,
+    "chimera": 1
+  },
+  "player": {
+    "visionRange": 2,
+    "defense": 5,
+    "shortAttack": 2,
+    "LongAttack": 1,
+    "delay": 0.5,
+    "range": 2
+  },
+  "chimera": {
+    "defense": 2,
+    "shortAttack": 3,
+    "LongAttack": 1,
+    "delay": 1,
+    "range": 2
+  },
+  "zombie": {
+    "defense": 3,
+    "shortAttack": 2,
+    "delay": 0.4,
+    "range": 1
+  }
+}

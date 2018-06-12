@@ -11,6 +11,9 @@ import java.net.URL;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 
 import javafx.event.ActionEvent;
@@ -22,7 +25,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import static logic.Logic.configuration;
+
 import javafx.stage.Stage;
+import logic.ReadFiles;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -31,8 +37,9 @@ import org.json.simple.parser.ParseException;
  */
 public class MenuController implements Initializable {
     
-   
-    
+   public  String file ="";
+    ReadFiles readFiles= new ReadFiles();
+
     
     
     @FXML
@@ -50,9 +57,29 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        
+        
+            System.out.println("Ingrese la URL del archivo");
+            
+            Scanner entradaEscaner = new Scanner (System.in); //CreaciÃ³n de un objeto Scanner
+
        
-    }    
+            String file  = entradaEscaner.nextLine ();
+                    
+      
+       try {
+           configuration = readFiles.readJsonFiles(file);
+       } catch (IOException ex) {
+           Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (ParseException ex) {
+           Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       
+
+    }
     
+        
     private void cambioScene(ActionEvent event, String destino) throws IOException{
         Parent tableViewParent = FXMLLoader.load(getClass().getResource(destino));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -61,6 +88,7 @@ public class MenuController implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         
         window.setScene(tableViewScene);
+        
         window.show();
     }
     
