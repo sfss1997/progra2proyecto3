@@ -47,12 +47,10 @@ public class FXMLDocumentController implements Initializable {
         this.logic = new Logic();
         this.logic.createGridPane();
         this.player = new Player(2, 2);
-        this.zombie = new Hilo(0, 0);
         updateInterface();
-        this.logic.cell[0][0].setIdAndImageView(3);
         addKeyAction();
 
-//        Image imageView = new Image("newpackage/4afb8339-9594-4917-95d2-2336c1369c2e.png");
+//        Image imageView = new Image("newpackage/zombie.png");
 //
 //        caca.getGraphicsContext2D().drawImage(imageView, 0, 0);
 //        Line line1 = new Line(2 * 100, 2 * 100, 4 * 100, 2 * 100);
@@ -61,7 +59,7 @@ public class FXMLDocumentController implements Initializable {
 //        pathTransitionBubble.setDuration(Duration.seconds(1));
 //        pathTransitionBubble.setPath(line1);
 //        pathTransitionBubble.play();
-        zombieThread();
+//        zombieThread();
     }
 
     private void updateInterface() {
@@ -70,7 +68,7 @@ public class FXMLDocumentController implements Initializable {
         for (int i = 0; i < this.logic.cell.length; i++) {
             for (int j = 0; j < this.logic.cell[0].length; j++) {
 
-                Image imageView = this.logic.cell[i][j].getImageView();
+                Image imageView = this.logic.cell[i][j].getImage();
                 int y = this.logic.cell[i][j].getRow() * 100;
                 int x = this.logic.cell[i][j].getColumn() * 100;
 
@@ -83,6 +81,7 @@ public class FXMLDocumentController implements Initializable {
 
     public void addKeyAction() {
         anchorPane.setOnKeyPressed(e -> {
+            //mover al personaje
             if (e.getCode() == KeyCode.RIGHT) {
                 this.player.playerRight();
                 updateInterface();
@@ -95,7 +94,18 @@ public class FXMLDocumentController implements Initializable {
             } else if (e.getCode() == KeyCode.DOWN) {
                 this.player.playerDown();
                 updateInterface();
-
+            }
+            
+            //cambiar armas del personaje
+            if(e.getCode() == KeyCode.DIGIT1){
+                this.player.changeWeapons(1);
+                updateInterface();
+            } else if(e.getCode() == KeyCode.DIGIT2){
+                this.player.changeWeapons(2);
+                updateInterface();
+            } else if(e.getCode() == KeyCode.DIGIT3){
+                this.player.changeWeapons(3);
+                updateInterface();
             }
 
 //            if(e.isControlDown() && e.getCode() == KeyCode.RIGHT){
@@ -144,10 +154,9 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void sadasdasd(ActionEvent event) {
-        this.player.playerRight();
+    private void x(ActionEvent event) {this.player.playerRight();
                 updateInterface();
-                zombieThread();
     }
+
 
 }

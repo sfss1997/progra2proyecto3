@@ -23,11 +23,11 @@ public class Hilo {
         this.logic = new Logic();
         this.zombieRow = zombieRow;
         this.zombieColumn = zombieColumn;
-        this.logic.cell[zombieRow][zombieColumn].setIdAndImageView(3);
+        this.logic.cell[zombieRow][zombieColumn].setIdAndImage(3);
     }
     
     public void run() {
-        this.logic.cell[0][0].setIdAndImageView(3);
+        this.logic.cell[0][0].setIdAndImage(3);
         int random;
         while(true){
             random = (int) (Math.random() * 3);
@@ -50,35 +50,35 @@ public class Hilo {
     }
     
     public void zombieUp() {
-        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImageView(1);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(1);
         if (this.zombieRow > 0 && this.logic.cell[this.zombieRow-1][this.zombieColumn].getID() == 1) {
             this.zombieRow--;
         }
-        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImageView(3);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(3);
     }
 
     public void zombieDown() {
-        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImageView(1);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(1);
         if (zombieRow < this.logic.cell.length-1 && this.logic.cell[this.zombieRow+1][this.zombieColumn].getID() == 1) {
             this.zombieRow++;
         }
-        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImageView(3);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(3);
     }
 
     public void zombieLeft() {
-        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImageView(1);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(1);
         if (this.zombieColumn > 0 && this.logic.cell[this.zombieRow][this.zombieColumn-1].getID() == 1) {
             this.zombieColumn--;
         }
-        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImageView(3);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(3);
     }
 
     public void zombieRight() {
-        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImageView(1);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(1);
         if (zombieColumn < this.logic.cell[0].length-1 && this.logic.cell[this.zombieRow][this.zombieColumn+1].getID() == 1) {
             this.zombieColumn++;
         }
-        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImageView(3);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(3);
     }
     
 }

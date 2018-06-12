@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import logic.Logic;
+import logic.PlayerWay;
 
 /**
  *
@@ -27,67 +28,124 @@ public class Player {
     private int LongAttack;
     private float delay;
     private int range;
+    private static PlayerWay way;
+    private static int weapon;
 
     public Player(int playerRow, int playerColumn) {
         this.logic = new Logic();
         this.playerRow = playerRow;
         this.playerColumn = playerColumn;
-        this.logic.cell[playerRow][playerColumn].setIdAndImageView(2);
+        this.logic.cell[playerRow][playerColumn].setIdAndImage(2);
+        this.way = this.way.LEFT;
+        this.weapon = 1;
+    }
+
+    public void changeWeapons(int i) {
+        PlayerWay playerWay = this.logic.cell[playerRow][playerColumn].getPlayerWay();
+        if (i == 1 && playerWay == playerWay.RIGHT) {
+            this.weapon = 1;
+            this.way = this.way.RIGHT;
+            this.logic.cell[playerRow][playerColumn].setIdAndImage(1);
+        } else if (i == 1 && playerWay == playerWay.LEFT) {
+            this.weapon = 1;
+            this.way = this.way.LEFT;
+            this.logic.cell[playerRow][playerColumn].setIdAndImage(2);
+        } else if (i == 2 && playerWay == playerWay.RIGHT) {
+            this.weapon = 2;
+            this.way = this.way.RIGHT;
+            this.logic.cell[playerRow][playerColumn].setIdAndImage(3);
+        } else if (i == 2 && playerWay == playerWay.LEFT) {
+            this.weapon = 2;
+            this.way = this.way.LEFT;
+            this.logic.cell[playerRow][playerColumn].setIdAndImage(4);
+        } else if (i == 3 && playerWay == playerWay.RIGHT) {
+            this.weapon = 3;
+            this.way = this.way.RIGHT;
+            this.logic.cell[playerRow][playerColumn].setIdAndImage(5);
+        } else if (i == 3 && playerWay == playerWay.LEFT) {
+            this.weapon = 3;
+            this.way = this.way.LEFT;
+            this.logic.cell[playerRow][playerColumn].setIdAndImage(6);
+        }
+    }
+    
+    private void playerWay(int weapon, PlayerWay way){
+        switch(weapon){
+            case 1:
+                if(way == PlayerWay.RIGHT){
+                    this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(1);
+                } else if (way == PlayerWay.LEFT){
+                    this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(2);
+                }
+                break;
+            case 2:
+                if(way == PlayerWay.RIGHT){
+                    this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(3);
+                } else if (way == PlayerWay.LEFT){
+                    this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(4);
+                }
+            case 3:
+                if(way == PlayerWay.RIGHT){
+                    this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(5);
+                } else if (way == PlayerWay.LEFT){
+                    this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(6);
+                }
+        }
     }
 
     public void playerUp() {
-        this.logic.cell[this.playerRow][this.playerColumn].setIdAndImageView(1);
-        if (this.playerRow > 0 && this.logic.cell[this.playerRow - 1][this.playerColumn].getID() == 1) {
+        this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(9);
+        if (this.playerRow > 0 && this.logic.cell[this.playerRow - 1][this.playerColumn].getID() == 9) {
             this.playerRow--;
         }
-        this.logic.cell[this.playerRow][this.playerColumn].setIdAndImageView(2);
+        playerWay(this.weapon, this.way);
     }
 
     public void playerDown() {
-        this.logic.cell[this.playerRow][this.playerColumn].setIdAndImageView(1);
-        if (playerRow < this.logic.cell.length - 1 && this.logic.cell[this.playerRow + 1][this.playerColumn].getID() == 1) {
+        this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(9);
+        if (playerRow < this.logic.cell.length - 1 && this.logic.cell[this.playerRow + 1][this.playerColumn].getID() == 9) {
             this.playerRow++;
         }
-        this.logic.cell[this.playerRow][this.playerColumn].setIdAndImageView(2);
+        playerWay(this.weapon, this.way);
     }
 
     public void playerLeft() {
-        this.logic.cell[this.playerRow][this.playerColumn].setIdAndImageView(1);
-        if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 1) {
+        this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(9);
+        if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 9) {
             this.playerColumn--;
         }
-        this.logic.cell[this.playerRow][this.playerColumn].setIdAndImageView(2);
+        playerWay(this.weapon, this.way);
     }
 
     public void playerRight() {
-        this.logic.cell[this.playerRow][this.playerColumn].setIdAndImageView(1);
-        if (playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 1) {
+        this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(9);
+        if (playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 9) {
             this.playerColumn++;
         }
-        this.logic.cell[this.playerRow][this.playerColumn].setIdAndImageView(2);
+        playerWay(this.weapon, this.way);
     }
 
     public void removeEarthUp() {
         if (this.playerRow > 0 && this.logic.cell[this.playerRow - 1][this.playerColumn].getID() == 1) {
-            this.logic.cell[this.playerRow - 1][this.playerColumn].setIdAndImageView(0);
+            this.logic.cell[this.playerRow - 1][this.playerColumn].setIdAndImage(0);
         }
     }
 
     public void removeEarthDown() {
         if (playerRow < this.logic.cell.length - 1 && this.logic.cell[this.playerRow + 1][this.playerColumn].getID() == 1) {
-            this.logic.cell[this.playerRow + 1][this.playerColumn].setIdAndImageView(0);
+            this.logic.cell[this.playerRow + 1][this.playerColumn].setIdAndImage(0);
         }
     }
 
     public void removeEarthLeft() {
         if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 1) {
-            this.logic.cell[this.playerRow][this.playerColumn - 1].setIdAndImageView(0);
+            this.logic.cell[this.playerRow][this.playerColumn - 1].setIdAndImage(0);
         }
     }
 
     public void removeEarthRight() {
         if (playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 1) {
-            this.logic.cell[this.playerRow][this.playerColumn + 1].setIdAndImageView(0);
+            this.logic.cell[this.playerRow][this.playerColumn + 1].setIdAndImage(0);
         }
     }
 

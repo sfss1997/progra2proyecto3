@@ -7,6 +7,6 @@
 <AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="progra2proyecto3.FXMLDocumentController">
    <children>
       <Canvas fx:id="caca" height="600.0" width="800.0" />
-      <Button layoutX="636.0" layoutY="487.0" mnemonicParsing="false" onAction="#sadasdasd" prefHeight="74.0" prefWidth="118.0" text="Button" />
+      <Button layoutX="674.0" layoutY="524.0" mnemonicParsing="false" onAction="#x" text="Button" />
    </children>
 </AnchorPane>

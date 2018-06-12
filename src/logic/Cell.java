@@ -19,16 +19,26 @@ import javax.xml.parsers.ParserConfigurationException;
  */
 public class Cell extends Pane {
 
-    private Image imageView;
+    private Image image;
     private int id;
     private int row;
     private int column;
+    private PlayerWay playerWay;
 
     public Cell() {
         setStyle("-fx-border-color : black");
         this.setPrefSize(100, 100);
-        this.imageView = new Image("/images/tierra.png");
-        this.id = 1;
+        this.image = new Image("/images/tierra.png");
+        this.id = 9;
+        this.playerWay = PlayerWay.LEFT;
+    }
+
+    public PlayerWay getPlayerWay() {
+        return playerWay;
+    }
+
+    public void setPlayerWay(PlayerWay playerWay) {
+        this.playerWay = playerWay;
     }
 
     public int getRow() {
@@ -47,12 +57,12 @@ public class Cell extends Pane {
         this.column = column;
     }
 
-    public Image getImageView() {
-        return imageView;
+    public Image getImage() {
+        return image;
     }
 
-    public void setImageView(Image imageView) {
-        this.imageView = imageView;
+    public void setImage(Image imageView) {
+        this.image = imageView;
     }
 
     public int getID() {
@@ -63,24 +73,66 @@ public class Cell extends Pane {
         this.id = id;
     }
     
-    public void setIdAndImageView(int id) {
+    /**
+     * 0 = Nada
+     * 1 = Espada Derecha
+     * 2 = Espada Izquierda
+     * 3 = Latigo Derecha
+     * 4 = Latigo Izquierda
+     * 5 = Pala Derecha
+     * 6 = Pala Izquierda
+     * 7 = Dragon
+     * 8 = Zombie
+     * @param id 
+     */
+    public void setIdAndImage(int id) {
         if (id == 0) {
             this.getChildren().clear();
-            this.id = 0;
-            this.imageView = null;
+            this.id = id;
+            this.image = null;
         } else if (id == 1) {
             this.getChildren().clear();
+            this.playerWay = this.playerWay.RIGHT;
             this.id = id;
-            this.imageView = new Image("/images/tierra.png");
+            this.image = new Image("/images/espada1.png");
         } else if (id == 2) {
             this.getChildren().clear();
+            this.playerWay = this.playerWay.LEFT;
             this.id = id;
-            this.imageView = new Image("/images/right2.gif");
+            this.image = new Image("/images/espada2.png");
         } else if (id == 3) {
             this.getChildren().clear();
+            this.playerWay = this.playerWay.RIGHT;
             this.id = id;
-            this.imageView = new Image("/images/ghost.gif");
-        }
+            this.image = new Image("/images/latigo1.png");
+        } else if (id == 4) {
+            this.getChildren().clear();
+            this.playerWay = this.playerWay.LEFT;
+            this.id = id;
+            this.image = new Image("/images/latigo2.png");
+        } else if (id == 5) {
+            this.getChildren().clear();
+            this.playerWay = this.playerWay.RIGHT;
+            this.id = id;
+            this.image = new Image("/images/pala1.png");
+        } else if (id == 6) {
+            this.getChildren().clear();
+            this.playerWay = this.playerWay.LEFT;
+            this.id = id;
+            this.image = new Image("/images/pala2.png");
+        } else if (id == 7) {
+            this.getChildren().clear();
+            this.id = id;
+            this.image = new Image("/images/drago.png");
+        } else if (id == 8) {
+            this.getChildren().clear();
+            this.id = id;
+            this.image = new Image("/images/zombie.png");
+        } else if (id == 9) {
+            this.getChildren().clear();
+            this.id = id;
+            this.image = new Image("/images/tierra.png");
+        } 
     }
 
     
