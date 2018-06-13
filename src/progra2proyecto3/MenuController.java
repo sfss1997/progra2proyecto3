@@ -25,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.media.AudioClip;
 import static logic.Logic.configuration;
 
 import javafx.stage.Stage;
@@ -39,6 +40,10 @@ public class MenuController implements Initializable {
     
    public  String file ="";
     ReadFiles readFiles= new ReadFiles();
+
+    public MenuController() {
+       
+    }
 
     
     
@@ -66,6 +71,8 @@ public class MenuController implements Initializable {
 
        
             String file  = entradaEscaner.nextLine ();
+            
+            
                     
       
        try {
@@ -77,6 +84,12 @@ public class MenuController implements Initializable {
        }
        
 
+       AudioClip note = new AudioClip(this.getClass().getResource("/sounds/sm64_mario_press_start.wav").toString());
+        
+        note.play();
+        
+        
+       
     }
     
         

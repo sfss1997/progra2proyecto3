@@ -23,6 +23,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import static logic.Logic.configuration;
@@ -55,6 +56,9 @@ public class FXMLDocumentController implements Initializable {
         this.player = new Player();
         updateInterface();
         addKeyAction();
+        
+        AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Indiana Jones Theme 8-Bit.mp3").toString());
+        note.play();
     }
 
     private void updateInterface() {
@@ -108,15 +112,23 @@ public class FXMLDocumentController implements Initializable {
             if (e.isControlDown() && e.getCode() == KeyCode.RIGHT) {
                 this.player.removeEarthRight();
                 updateInterface();
+                AudioClip note = new AudioClip(this.getClass().getResource("/sounds/BlazeHurt.mp3").toString());
+                note.play();
             } else if (e.isControlDown() && e.getCode() == KeyCode.LEFT) {
                 this.player.removeEarthLeft();
                 updateInterface();
+                AudioClip note = new AudioClip(this.getClass().getResource("/sounds/BlazeHurt.mp3").toString());
+                note.play();
             } else if (e.isControlDown() && e.getCode() == KeyCode.UP) {
                 this.player.removeEarthUp();
                 updateInterface();
+                AudioClip note = new AudioClip(this.getClass().getResource("/sounds/BlazeHurt.mp3").toString());
+                note.play();
             } else if (e.isControlDown() && e.getCode() == KeyCode.DOWN) {
                 this.player.removeEarthDown();
                 updateInterface();
+                AudioClip note = new AudioClip(this.getClass().getResource("/sounds/BlazeHurt.mp3").toString());
+                note.play();
             }
         });
 
