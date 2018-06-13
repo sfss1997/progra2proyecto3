@@ -25,12 +25,19 @@ public class Cell extends Pane {
     private int column;
     private PlayerWay playerWay;
 
-    public Cell() {
-        setStyle("-fx-border-color : black");
-        this.setPrefSize(75, 75);
-        this.image = new Image("/images/tierra.png");
-        this.id = 9;
-        this.playerWay = PlayerWay.LEFT;
+    public Cell(int i) {
+        if (i == 0) {
+
+            this.setPrefSize(75, 75);
+            this.setIdAndImage(0);
+            this.playerWay = PlayerWay.LEFT;
+        } else if (i == 1) {
+
+            this.setPrefSize(75, 75);
+            this.setIdAndImage(9);
+            this.playerWay = PlayerWay.LEFT;
+        }
+
     }
 
     public PlayerWay getPlayerWay() {
@@ -72,18 +79,13 @@ public class Cell extends Pane {
     public void setId(int id) {
         this.id = id;
     }
-    
+
     /**
-     * 0 = Nada
-     * 1 = Espada Derecha
-     * 2 = Espada Izquierda
-     * 3 = Latigo Derecha
-     * 4 = Latigo Izquierda
-     * 5 = Pala Derecha
-     * 6 = Pala Izquierda
-     * 7 = Dragon
-     * 8 = Zombie
-     * @param id 
+     * 0 = Nada 1 = Espada Derecha 2 = Espada Izquierda 3 = Latigo Derecha 4 =
+     * Latigo Izquierda 5 = Pala Derecha 6 = Pala Izquierda 7 = Dragon 8 =
+     * Zombie
+     *
+     * @param id
      */
     public void setIdAndImage(int id) {
         if (id == 0) {
@@ -132,9 +134,7 @@ public class Cell extends Pane {
             this.getChildren().clear();
             this.id = id;
             this.image = new Image("/images/tierra.png");
-        } 
+        }
     }
-
-    
 
 }

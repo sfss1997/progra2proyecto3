@@ -24,8 +24,7 @@ public class Logic {
     private static int playerColumn;
 
     public static Configuration configuration = new Configuration();
-    
-    
+
     public Logic() {
         init();
     }
@@ -49,9 +48,25 @@ public class Logic {
     public void createGridPane() {
         for (int i = 0; i < configuration.getHeight(); i++) {
             for (int j = 0; j < configuration.getWidth(); j++) {
-                cell[i][j] = new Cell();
-                cell[i][j].setRow(i);
-                cell[i][j].setColumn(j);
+                int random = (int) (Math.random() * 2);
+                if (configuration.getType().equals("random")) {
+                    if (i == configuration.getHeight() - 1) {
+                        random = 1;
+                    }
+                    cell[i][j] = new Cell(random);
+                    cell[i][j].setRow(i);
+                    cell[i][j].setColumn(j);
+                } else if (configuration.getType().equals("plane")) {
+                    if (i != configuration.getHeight() - 1) {
+                        cell[i][j] = new Cell(0);
+                        cell[i][j].setRow(i);
+                        cell[i][j].setColumn(j);
+                    } else {
+                        cell[i][j] = new Cell(1);
+                        cell[i][j].setRow(i);
+                        cell[i][j].setColumn(j);
+                    }
+                }
             }
         }
     }
@@ -141,5 +156,4 @@ public class Logic {
 //            this.cell[this.playerRow][this.playerColumn + 1].setIdAndImageView(0);
 //        }
 //    }
-
 }
