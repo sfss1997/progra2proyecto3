@@ -50,21 +50,10 @@ public class FXMLDocumentController implements Initializable {
         this.anchorPane.setPrefSize(configuration.getWidth()*75, configuration.getHeight()*75);
         this.caca.setHeight(configuration.getHeight()*75); 
         this.caca.setWidth(configuration.getWidth()*75);
-        this.logic.createGridPane();
-        this.player = new Player(2, 2);
+        this.logic.createCell();
+        this.player = new Player();
         updateInterface();
         addKeyAction();
-
-//        Image imageView = new Image("newpackage/zombie.png");
-//
-//        caca.getGraphicsContext2D().drawImage(imageView, 0, 0);
-//        Line line1 = new Line(2 * 100, 2 * 100, 4 * 100, 2 * 100);
-//        PathTransition pathTransitionBubble = new PathTransition();
-//        pathTransitionBubble.setNode(imageView);
-//        pathTransitionBubble.setDuration(Duration.seconds(1));
-//        pathTransitionBubble.setPath(line1);
-//        pathTransitionBubble.play();
-//        zombieThread();
     }
 
     private void updateInterface() {

@@ -36,6 +36,10 @@ public class Cell extends Pane {
             this.setPrefSize(75, 75);
             this.setIdAndImage(9);
             this.playerWay = PlayerWay.LEFT;
+        } else if(i == 2){
+            this.setPrefSize(75, 75);
+            this.setIdAndImage(10);
+            this.playerWay = PlayerWay.LEFT;
         }
 
     }
@@ -133,8 +137,13 @@ public class Cell extends Pane {
         } else if (id == 9) {
             this.getChildren().clear();
             this.id = id;
-            this.image = new Image("/images/tierra.png");
+            this.image = new Image("/images/mine.png");
+        } else if (id == 10) {
+            this.getChildren().clear();
+            this.id = id;
+            this.image = new Image("/images/piedra.png");
         }
+        
     }
 
 }

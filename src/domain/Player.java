@@ -31,11 +31,9 @@ public class Player {
     private static PlayerWay way;
     private static int weapon;
 
-    public Player(int playerRow, int playerColumn) {
+    public Player() {
         this.logic = new Logic();
-        this.playerRow = playerRow;
-        this.playerColumn = playerColumn;
-        this.logic.cell[playerRow][playerColumn].setIdAndImage(2);
+        findEarth();
         this.way = PlayerWay.LEFT;
         this.weapon = 1;
     }
@@ -68,33 +66,32 @@ public class Player {
             this.logic.cell[playerRow][playerColumn].setIdAndImage(6);
         }
     }
-    
-    private void playerWay(int weapon, PlayerWay way){
-        switch(weapon){
+
+    private void playerWay(int weapon, PlayerWay way) {
+        switch (weapon) {
             case 1:
-                if(way == PlayerWay.RIGHT){
+                if (way == PlayerWay.RIGHT) {
                     this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(1);
-                } else if (way == PlayerWay.LEFT){
+                } else if (way == PlayerWay.LEFT) {
                     this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(2);
                 }
                 break;
             case 2:
-                if(way == PlayerWay.RIGHT){
+                if (way == PlayerWay.RIGHT) {
                     this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(3);
-                } else if (way == PlayerWay.LEFT){
+                } else if (way == PlayerWay.LEFT) {
                     this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(4);
                 }
             case 3:
-                if(way == PlayerWay.RIGHT){
+                if (way == PlayerWay.RIGHT) {
                     this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(5);
-                } else if (way == PlayerWay.LEFT){
+                } else if (way == PlayerWay.LEFT) {
                     this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(6);
                 }
         }
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
-    
     public void playerUp() {
         this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(0);
         if (this.playerRow > 0 && this.logic.cell[this.playerRow - 1][this.playerColumn].getID() == 0) {
@@ -113,7 +110,8 @@ public class Player {
 
     public void playerLeft() {
         this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(0);
-        if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 0) {
+        if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 0
+                && isEarthLeft() == true) {
             this.playerColumn--;
         }
         playerWay(this.weapon, PlayerWay.LEFT);
@@ -121,26 +119,26 @@ public class Player {
 
     public void playerRight() {
         this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(0);
-        if (playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 0) {
+        if (playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 0
+                && isEarthRight() == true) {
             this.playerColumn++;
         }
         playerWay(this.weapon, PlayerWay.RIGHT);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-
     public void removeEarthUp() {
         int idPlayer = this.logic.cell[this.playerRow][this.playerColumn].getID();
-        if (this.playerRow > 0 && this.logic.cell[this.playerRow - 1][this.playerColumn].getID() == 9 
-                && (idPlayer == 5 || idPlayer ==6)) {
+        if (this.playerRow > 0 && this.logic.cell[this.playerRow - 1][this.playerColumn].getID() == 9
+                && (idPlayer == 5 || idPlayer == 6)) {
             this.logic.cell[this.playerRow - 1][this.playerColumn].setIdAndImage(0);
         }
     }
 
     public void removeEarthDown() {
         int idPlayer = this.logic.cell[this.playerRow][this.playerColumn].getID();
-        if (playerRow < this.logic.cell.length - 1 && this.logic.cell[this.playerRow + 1][this.playerColumn].getID() == 9
-                && (idPlayer == 5 || idPlayer ==6)) {
+        if (playerRow + 1 < this.logic.cell.length - 1 && this.logic.cell[this.playerRow + 1][this.playerColumn].getID() == 9
+                && (idPlayer == 5 || idPlayer == 6)) {
             this.logic.cell[this.playerRow + 1][this.playerColumn].setIdAndImage(0);
         }
     }
@@ -148,7 +146,7 @@ public class Player {
     public void removeEarthLeft() {
         int idPlayer = this.logic.cell[this.playerRow][this.playerColumn].getID();
         if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 9
-                && (idPlayer == 5 || idPlayer ==6)) {
+                && (idPlayer == 5 || idPlayer == 6)) {
             this.logic.cell[this.playerRow][this.playerColumn - 1].setIdAndImage(0);
         }
     }
@@ -156,13 +154,58 @@ public class Player {
     public void removeEarthRight() {
         int idPlayer = this.logic.cell[this.playerRow][this.playerColumn].getID();
         if (playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 9
-                && (idPlayer == 5 || idPlayer ==6)) {
+                && (idPlayer == 5 || idPlayer == 6)) {
             this.logic.cell[this.playerRow][this.playerColumn + 1].setIdAndImage(0);
         }
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////
-    
+    private boolean isEarthLeft() {
+        if (this.logic.cell[this.playerRow + 1][this.playerColumn - 1].getID() == 9
+                || this.logic.cell[this.playerRow + 1][this.playerColumn - 1].getID() == 10) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean isEarthRight() {
+        if (this.logic.cell[this.playerRow + 1][this.playerColumn + 1].getID() == 9
+                || this.logic.cell[this.playerRow + 1][this.playerColumn + 1].getID() == 10) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean isEarthDown(int row, int column) {
+        if (row + 1 < this.logic.cell.length) {
+            if (this.logic.cell[row + 1][column].getID() == 9 || this.logic.cell[row + 1][column].getID() == 10) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    private void findEarth() {
+        for (int i = 0; i < this.logic.cell.length; i++) {
+            for (int j = 0; j < this.logic.cell[0].length; j++) {
+                if (isEarthDown(i, j) == true) {
+                    this.playerRow = i;
+                    this.playerColumn = j;
+                    this.logic.cell[playerRow][playerColumn].setIdAndImage(2);
+
+                    i = this.logic.cell.length;
+                    j = this.logic.cell[0].length;
+                }
+            }
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
     public int getPlayerRow() {
         return playerRow;
     }
