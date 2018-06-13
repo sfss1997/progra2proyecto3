@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui;
 
 import javax.swing.JFrame;
 
 /**
- *
- * @author Nicole
+ * Interfaz ventana principal login.
+ * @author Nicole Fonseca, Wilmer Mata, Sergio Siles
  */
 public class Login extends javax.swing.JPanel {
 
@@ -48,7 +44,11 @@ public class Login extends javax.swing.JPanel {
         jPasswordField1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
         enterButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        enterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/iniciar-la-sesion.png"))); // NOI18N
         enterButton.setText("Ingresar");
+        enterButton.setBorderPainted(false);
+        enterButton.setContentAreaFilled(false);
+        enterButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         enterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enterButtonActionPerformed(evt);
@@ -72,7 +72,7 @@ public class Login extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(enterButton)
-                .addGap(39, 39, 39))
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,9 +85,9 @@ public class Login extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(enterButton)
-                .addGap(36, 36, 36))
+                .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -101,9 +101,9 @@ public class Login extends javax.swing.JPanel {
         Administrator administrator = new Administrator();
         JFrame jFrame = new JFrame();
         jFrame.setUndecorated(true);
-        jFrame.setLocation(450,200);
+        jFrame.setLocation(270,120);
         jFrame.setTitle("Logística de distribución");
-        jFrame.setSize(399, 245);
+        jFrame.setSize(994,551);
         jFrame.add(logisticsDistribution);
         jFrame.setVisible(true);
         //Validar usuario
