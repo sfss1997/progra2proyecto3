@@ -2,7 +2,7 @@
   "saveFile": "C:\\minerider.json",
   "width": 18,
   "height": 9,
-  "type": "plane",
+  "type": "random",
   "probabilities": {
     "stone": 5,
     "zombie": 2,

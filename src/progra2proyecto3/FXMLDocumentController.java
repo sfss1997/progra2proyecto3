@@ -26,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import static logic.Logic.configuration;
+import logic.PlayerWay;
 
 /**
  *
@@ -45,11 +46,11 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+
         this.logic = new Logic();
-        this.anchorPane.setPrefSize(configuration.getWidth()*75, configuration.getHeight()*75);
-        this.caca.setHeight(configuration.getHeight()*75); 
-        this.caca.setWidth(configuration.getWidth()*75);
+        this.anchorPane.setPrefSize(configuration.getWidth() * 75, configuration.getHeight() * 75);
+        this.caca.setHeight(configuration.getHeight() * 75);
+        this.caca.setWidth(configuration.getWidth() * 75);
         this.logic.createCell();
         this.player = new Player();
         updateInterface();
@@ -58,7 +59,7 @@ public class FXMLDocumentController implements Initializable {
 
     private void updateInterface() {
 
-        caca.getGraphicsContext2D().clearRect(0, 0, configuration.getWidth()*75, configuration.getHeight()*75);
+        caca.getGraphicsContext2D().clearRect(0, 0, configuration.getWidth() * 75, configuration.getHeight() * 75);
         for (int i = 0; i < this.logic.cell.length; i++) {
             for (int j = 0; j < this.logic.cell[0].length; j++) {
 
@@ -79,9 +80,11 @@ public class FXMLDocumentController implements Initializable {
             if (e.getCode() == KeyCode.RIGHT) {
                 this.player.playerRight();
                 updateInterface();
+//                downThread();
             } else if (e.getCode() == KeyCode.LEFT) {
                 this.player.playerLeft();
                 updateInterface();
+//                downThread();
             } else if (e.getCode() == KeyCode.UP) {
                 this.player.playerUp();
                 updateInterface();
@@ -89,29 +92,29 @@ public class FXMLDocumentController implements Initializable {
                 this.player.playerDown();
                 updateInterface();
             }
-            
+
             //cambiar armas del personaje
-            if(e.getCode() == KeyCode.DIGIT1){
+            if (e.getCode() == KeyCode.DIGIT1) {
                 this.player.changeWeapons(1);
                 updateInterface();
-            } else if(e.getCode() == KeyCode.DIGIT2){
+            } else if (e.getCode() == KeyCode.DIGIT2) {
                 this.player.changeWeapons(2);
                 updateInterface();
-            } else if(e.getCode() == KeyCode.DIGIT3){
+            } else if (e.getCode() == KeyCode.DIGIT3) {
                 this.player.changeWeapons(3);
                 updateInterface();
             }
 
-            if(e.isControlDown() && e.getCode() == KeyCode.RIGHT){
+            if (e.isControlDown() && e.getCode() == KeyCode.RIGHT) {
                 this.player.removeEarthRight();
                 updateInterface();
-            } else if(e.isControlDown() && e.getCode() == KeyCode.LEFT){
+            } else if (e.isControlDown() && e.getCode() == KeyCode.LEFT) {
                 this.player.removeEarthLeft();
                 updateInterface();
-            } else if(e.isControlDown() && e.getCode() == KeyCode.UP){
+            } else if (e.isControlDown() && e.getCode() == KeyCode.UP) {
                 this.player.removeEarthUp();
                 updateInterface();
-            } else if(e.isControlDown() && e.getCode() == KeyCode.DOWN){
+            } else if (e.isControlDown() && e.getCode() == KeyCode.DOWN) {
                 this.player.removeEarthDown();
                 updateInterface();
             }
@@ -121,40 +124,71 @@ public class FXMLDocumentController implements Initializable {
 
     private void zombieThread() {
         Runnable runnable = () -> {
-        Hilo h = new Hilo(0, 0);
-        int random;
-        while (true) {
-            random = (int) (Math.random() * 4);
-            System.out.println(random);
-            if (random == 0) {
-                h.zombieUp();
-                updateInterface();
-            } else if (random == 1) {
-                h.zombieDown();
-                updateInterface();
-            } else if (random == 2) {
-                h.zombieLeft();
-                updateInterface();
-            } else if (random == 3) {
-                h.zombieRight();
-                updateInterface();
+            Hilo h = new Hilo(0, 0);
+            int random;
+            while (true) {
+                random = (int) (Math.random() * 4);
+                System.out.println(random);
+                if (random == 0) {
+                    h.zombieUp();
+                    updateInterface();
+                } else if (random == 1) {
+                    h.zombieDown();
+                    updateInterface();
+                } else if (random == 2) {
+                    h.zombieLeft();
+                    updateInterface();
+                } else if (random == 3) {
+                    h.zombieRight();
+                    updateInterface();
+                }
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
         };
         Thread t = new Thread(runnable);
         t.start();
-        
+
+    }
+
+    private void downThread() {
+
+        Runnable runnable = () -> {
+
+            boolean x = true;
+            while (x == true) {
+                int playerRow = player.getPlayerRow();
+                int playerColumn = player.getPlayerColumn();
+                int weapon = player.getWeapon();
+                if (player.isEarthDown(playerRow, playerColumn) == true) {
+                    System.out.println("aaaaa");
+                    x = false;
+                    updateInterface();
+                } else if (player.isEarthDown(playerRow, playerColumn) == false) {
+                    this.logic.cell[playerRow][playerColumn].setIdAndImage(0);
+                    player.setPlayerRow(playerRow++);
+                    player.playerWay(weapon, PlayerWay.RIGHT);
+                    updateInterface();
+                }
+
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        Thread t = new Thread(runnable);
+        t.start();
     }
 
     @FXML
-    private void x(ActionEvent event) {this.player.playerRight();
-                updateInterface();
+    private void x(ActionEvent event) {
+        this.player.playerRight();
+        updateInterface();
     }
-
 
 }

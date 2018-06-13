@@ -5,6 +5,8 @@
  */
 package domain;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.PathTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -67,7 +69,7 @@ public class Player {
         }
     }
 
-    private void playerWay(int weapon, PlayerWay way) {
+    public void playerWay(int weapon, PlayerWay way) {
         switch (weapon) {
             case 1:
                 if (way == PlayerWay.RIGHT) {
@@ -111,9 +113,10 @@ public class Player {
     public void playerLeft() {
         this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(0);
         if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 0
-                && isEarthLeft() == true) {
-            this.playerColumn--;
+                && isEarthRight() == true) {
+            this.playerRow++;
         }
+
         playerWay(this.weapon, PlayerWay.LEFT);
     }
 
@@ -178,7 +181,7 @@ public class Player {
         }
     }
 
-    private boolean isEarthDown(int row, int column) {
+    public boolean isEarthDown(int row, int column) {
         if (row + 1 < this.logic.cell.length) {
             if (this.logic.cell[row + 1][column].getID() == 9 || this.logic.cell[row + 1][column].getID() == 10) {
                 return true;
@@ -189,6 +192,8 @@ public class Player {
             return false;
         }
     }
+
+    
 
     private void findEarth() {
         for (int i = 0; i < this.logic.cell.length; i++) {
@@ -268,6 +273,22 @@ public class Player {
 
     public void setRange(int range) {
         this.range = range;
+    }
+
+    public static PlayerWay getWay() {
+        return way;
+    }
+
+    public static void setWay(PlayerWay way) {
+        Player.way = way;
+    }
+
+    public static int getWeapon() {
+        return weapon;
+    }
+
+    public static void setWeapon(int weapon) {
+        Player.weapon = weapon;
     }
 
     @Override
