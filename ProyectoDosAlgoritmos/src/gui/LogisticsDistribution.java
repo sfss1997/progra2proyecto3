@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui;
 
 /**
- *
- * @author Nicole
+ * Interfaz módulo Logística de distribución.
+ * @author Nicole Fonseca, Wilmer Mata, Sergio Siles
  */
 public class LogisticsDistribution extends javax.swing.JFrame {
 
@@ -41,7 +37,7 @@ public class LogisticsDistribution extends javax.swing.JFrame {
         jList2 = new javax.swing.JList<>();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        returnLoginButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
@@ -99,16 +95,23 @@ public class LogisticsDistribution extends javax.swing.JFrame {
         jButton1.setText("Confirmar");
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/salir-con-boton-en-esquema.png"))); // NOI18N
-        jButton2.setText("Salir");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
+        returnLoginButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/salir-con-boton-en-esquema.png"))); // NOI18N
+        returnLoginButton.setText("Salir");
+        returnLoginButton.setBorderPainted(false);
+        returnLoginButton.setContentAreaFilled(false);
+        returnLoginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        returnLoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnLoginButtonActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("***IMAGEN BODEGA***");
 
@@ -161,7 +164,7 @@ public class LogisticsDistribution extends javax.swing.JFrame {
                         .addGap(8, 8, 8)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
+                        .addComponent(returnLoginButton))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabel6)))
@@ -182,7 +185,7 @@ public class LogisticsDistribution extends javax.swing.JFrame {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
+                            .addComponent(returnLoginButton)
                             .addComponent(jButton1))
                         .addGap(33, 33, 33))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -225,6 +228,12 @@ public class LogisticsDistribution extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void returnLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnLoginButtonActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_returnLoginButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -265,7 +274,6 @@ public class LogisticsDistribution extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -281,5 +289,6 @@ public class LogisticsDistribution extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton returnLoginButton;
     // End of variables declaration//GEN-END:variables
 }

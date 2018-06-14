@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui;
 
 /**
- *
- * @author Nicole
+ * Interfaz módulo administrador.
+ * @author Nicole Fonseca, Wilmer Mata, Sergio Siles
  */
 public class Administrator extends javax.swing.JFrame {
 
@@ -29,10 +25,10 @@ public class Administrator extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        reportsButton = new javax.swing.JButton();
+        maintenanceButton = new javax.swing.JButton();
+        recordButton = new javax.swing.JButton();
+        returnLoginButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,38 +38,53 @@ public class Administrator extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/administrador-con-tuercas.png"))); // NOI18N
         jLabel1.setText("Administrador");
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tareas.png"))); // NOI18N
-        jButton1.setText("Reporte de lotes anulados");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        reportsButton.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        reportsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tareas.png"))); // NOI18N
+        reportsButton.setText("Reporte de lotes anulados");
+        reportsButton.setBorderPainted(false);
+        reportsButton.setContentAreaFilled(false);
+        reportsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reportsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                reportsButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tuercas.png"))); // NOI18N
-        jButton2.setText("Mantenimiento");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        maintenanceButton.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        maintenanceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tuercas.png"))); // NOI18N
+        maintenanceButton.setText("Mantenimiento");
+        maintenanceButton.setBorderPainted(false);
+        maintenanceButton.setContentAreaFilled(false);
+        maintenanceButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        maintenanceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maintenanceButtonActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/crecimiento.png"))); // NOI18N
-        jButton3.setText("Historial");
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        recordButton.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        recordButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/crecimiento.png"))); // NOI18N
+        recordButton.setText("Historial");
+        recordButton.setBorderPainted(false);
+        recordButton.setContentAreaFilled(false);
+        recordButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        recordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recordButtonActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/salir-con-boton-en-esquema.png"))); // NOI18N
-        jButton4.setText("Salir");
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        returnLoginButton.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        returnLoginButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/salir-con-boton-en-esquema.png"))); // NOI18N
+        returnLoginButton.setText("Salir");
+        returnLoginButton.setBorderPainted(false);
+        returnLoginButton.setContentAreaFilled(false);
+        returnLoginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        returnLoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnLoginButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -86,15 +97,15 @@ public class Administrator extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(reportsButton)
                         .addGap(33, 33, 33)
-                        .addComponent(jButton2)
+                        .addComponent(maintenanceButton)
                         .addGap(41, 41, 41)
-                        .addComponent(jButton3)))
+                        .addComponent(recordButton)))
                 .addContainerGap(95, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(returnLoginButton)
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -104,11 +115,11 @@ public class Administrator extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(reportsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maintenanceButton)
+                    .addComponent(recordButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(returnLoginButton)
                 .addGap(20, 20, 20))
         );
 
@@ -126,9 +137,29 @@ public class Administrator extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void reportsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsButtonActionPerformed
+        Reports reports = new Reports();
+        reports.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_reportsButtonActionPerformed
+
+    private void maintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintenanceButtonActionPerformed
+        Maintenance maintenance = new Maintenance();
+        maintenance.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_maintenanceButtonActionPerformed
+
+    private void recordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordButtonActionPerformed
+        Record record = new Record();
+        record.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_recordButtonActionPerformed
+
+    private void returnLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnLoginButtonActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_returnLoginButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,11 +197,11 @@ public class Administrator extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton maintenanceButton;
+    private javax.swing.JButton recordButton;
+    private javax.swing.JButton reportsButton;
+    private javax.swing.JButton returnLoginButton;
     // End of variables declaration//GEN-END:variables
 }
