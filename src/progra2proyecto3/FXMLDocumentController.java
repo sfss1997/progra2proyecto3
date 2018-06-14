@@ -5,6 +5,7 @@
  */
 package progra2proyecto3;
 
+import domain.Chimera;
 import domain.Zombie;
 import domain.Player;
 import logic.Logic;
@@ -168,6 +169,40 @@ public class FXMLDocumentController implements Initializable {
         t.start();
 
     }
+    
+    private void chimeraThread() {
+        Runnable runnable = () -> {
+
+            Chimera c = new Chimera();
+
+            int random;
+            while (true) {
+                random = (int) (Math.random() * 4);
+
+                if (random == 0) {
+                    c.chimeraUp();
+                    updateInterface();
+                } else if (random == 1) {
+                    c.chimeraDown();
+                    updateInterface();
+                } else if (random == 2) {
+                    c.chimeraLeft();
+                    updateInterface();
+                } else if (random == 3) {
+                    c.chimeraRight();
+                    updateInterface();
+                }
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Chimera.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        Thread t = new Thread(runnable);
+        t.start();
+
+    }
 
     private void godThread() {
         Runnable runnable = () -> {
@@ -189,7 +224,8 @@ public class FXMLDocumentController implements Initializable {
                     zombieThread();
                     System.out.print("God crea un nuevo zombie");
                 } else if (random > zombie && random <= chimera) {
-//                  //crear chimera
+                  chimeraThread();
+                  System.out.print("God crea un nuevo dragón");
                 }
                 try {
                     Thread.sleep(100);
