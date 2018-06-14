@@ -56,7 +56,8 @@ public class FXMLDocumentController implements Initializable {
         this.player = new Player();
         updateInterface();
         addKeyAction();
-        zombieThread();
+        godThread();
+        
         
 //        AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Indiana Jones Theme 8-Bit.mp3").toString());
 //        note.play();
@@ -143,7 +144,7 @@ public class FXMLDocumentController implements Initializable {
             int random;
             while (true) {
                 random = (int) (Math.random() * 4);
-                System.out.println(random);
+                
                 if (random == 0) {
                     h.zombieUp();
                     updateInterface();
@@ -161,6 +162,33 @@ public class FXMLDocumentController implements Initializable {
                     Thread.sleep(200);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Zombie.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        Thread t = new Thread(runnable);
+        t.start();
+
+    }
+    private void godThread() {
+        Runnable runnable = () -> {
+        
+            while (true) {
+               int random = (int)((Math.random()*101)+1);
+               int stone = configuration.getProbabilities().getStone();
+               int zombie = stone+configuration.getProbabilities().getZombie();
+               int chimera = zombie+configuration.getProbabilities().getChimera();
+               if(random<=stone){
+                   //crear piedra
+               }else if(random>stone && random<=zombie){
+                   zombieThread();
+                   System.out.print("God crea un nuevo zombie");
+               }else if(random>zombie && random<=chimera){
+//                  //crear chimera
+               }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
