@@ -113,7 +113,7 @@ public class Player {
     public void playerLeft() {
         this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(0);
         if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 0
-                && isEarthLeft()== true) {
+                && isEarthLeft() == true) {
             this.playerColumn--;
         }
 
@@ -183,7 +183,8 @@ public class Player {
 
     public boolean isEarthDown(int row, int column) {
         if (row + 1 < this.logic.cell.length) {
-            if (this.logic.cell[row + 1][column].getID() == 9 || this.logic.cell[row + 1][column].getID() == 10) {
+            if ((this.logic.cell[row + 1][column].getID() == 9 || this.logic.cell[row + 1][column].getID() == 10)
+                    && this.logic.cell[row][column].getID() == 0) {
                 return true;
             } else {
                 return false;
@@ -193,19 +194,21 @@ public class Player {
         }
     }
 
-    
-
     private void findEarth() {
-        for (int i = 0; i < this.logic.cell.length; i++) {
-            for (int j = 0; j < this.logic.cell[0].length; j++) {
-                if (isEarthDown(i, j) == true) {
-                    this.playerRow = i;
-                    this.playerColumn = j;
-                    this.logic.cell[playerRow][playerColumn].setIdAndImage(2);
 
-                    i = this.logic.cell.length;
-                    j = this.logic.cell[0].length;
-                }
+        while (true) {
+            int randomRow = (int) (Math.random() * this.logic.cell.length);
+            int randomColumn = (int) (Math.random() * this.logic.cell[0].length);
+            
+            if (isEarthDown(randomRow, randomColumn) == true) {
+                
+                this.playerRow = randomRow;
+                this.playerColumn = randomColumn;
+                this.logic.cell[playerRow][playerColumn].setIdAndImage(2);
+
+                randomRow = this.logic.cell.length;
+                randomColumn = this.logic.cell[0].length;
+                break;
             }
         }
     }

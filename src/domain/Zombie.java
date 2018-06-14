@@ -93,16 +93,19 @@ public class Zombie {
     
 
     private void findEarth() {
-        for (int i = 0; i < this.logic.cell.length; i++) {
-            for (int j = 0; j < this.logic.cell[0].length; j++) {
-                if (isEarthDown(i, j) == true) {
-                    this.zombieRow = i;
-                    this.zombieColumn = j;
-                    this.logic.cell[zombieRow][zombieColumn].setIdAndImage(8);
+        while (true) {
+            int randomRow = (int) (Math.random() * this.logic.cell.length);
+            int randomColumn = (int) (Math.random() * this.logic.cell[0].length);
+            
+            if (isEarthDown(randomRow, randomColumn) == true) {
+                
+                this.zombieRow = randomRow;
+                this.zombieColumn = randomColumn;
+                this.logic.cell[zombieRow][zombieColumn].setIdAndImage(8);
 
-                    i = this.logic.cell.length;
-                    j = this.logic.cell[0].length;
-                }
+                randomRow = this.logic.cell.length;
+                randomColumn = this.logic.cell[0].length;
+                break;
             }
         }
     }
