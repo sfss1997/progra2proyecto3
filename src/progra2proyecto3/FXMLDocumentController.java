@@ -57,8 +57,7 @@ public class FXMLDocumentController implements Initializable {
         updateInterface();
         addKeyAction();
         godThread();
-        
-        
+
 //        AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Indiana Jones Theme 8-Bit.mp3").toString());
 //        note.play();
     }
@@ -138,13 +137,13 @@ public class FXMLDocumentController implements Initializable {
 
     private void zombieThread() {
         Runnable runnable = () -> {
-           
-            Zombie h = new Zombie(); 
-            
+
+            Zombie h = new Zombie();
+
             int random;
             while (true) {
                 random = (int) (Math.random() * 4);
-                
+
                 if (random == 0) {
                     h.zombieUp();
                     updateInterface();
@@ -169,24 +168,31 @@ public class FXMLDocumentController implements Initializable {
         t.start();
 
     }
+
     private void godThread() {
         Runnable runnable = () -> {
-        
+
             while (true) {
-               int random = (int)((Math.random()*101)+1);
-               int stone = configuration.getProbabilities().getStone();
-               int zombie = stone+configuration.getProbabilities().getZombie();
-               int chimera = zombie+configuration.getProbabilities().getChimera();
-               if(random<=stone){
-                   //crear piedra
-               }else if(random>stone && random<=zombie){
-                   zombieThread();
-                   System.out.print("God crea un nuevo zombie");
-               }else if(random>zombie && random<=chimera){
+                int random = (int) ((Math.random() * 101) + 1);
+                int stone = configuration.getProbabilities().getStone();
+                int zombie = stone + configuration.getProbabilities().getZombie();
+                int chimera = zombie + configuration.getProbabilities().getChimera();
+                if (random <= stone) {
+                    //crear piedra
+                    int randomRow = (int) (Math.random() * this.logic.cell.length);
+                    int randomColumn = (int) (Math.random() * this.logic.cell[0].length);
+                    if (player.isEarthDown(randomRow, randomColumn) == true) {
+                        this.logic.cell[randomRow][randomColumn].setIdAndImage(9);
+                        System.out.print("God crea tierra");
+                    }
+                } else if (random > stone && random <= zombie) {
+                    zombieThread();
+                    System.out.print("God crea un nuevo zombie");
+                } else if (random > zombie && random <= chimera) {
 //                  //crear chimera
-               }
+                }
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
