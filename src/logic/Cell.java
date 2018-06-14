@@ -129,11 +129,11 @@ public class Cell extends Pane {
         } else if (id == 7) {
             this.getChildren().clear();
             this.id = id;
-            this.image = new Image("/images/drago.png");
+            this.image = new Image("/images/drago.gif");
         } else if (id == 8) {
             this.getChildren().clear();
             this.id = id;
-            this.image = new Image("/images/zombie.png");
+            this.image = new Image("/images/zombie.gif");
         } else if (id == 9) {
             this.getChildren().clear();
             this.id = id;

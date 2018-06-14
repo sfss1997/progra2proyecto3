@@ -13,37 +13,37 @@ import logic.Logic;
  *
  * @author fabian
  */
-public class Hilo {
+public class Zombie {
 
     private Logic logic; 
     private int zombieRow;
     private int zombieColumn;
 
-    public Hilo(int zombieRow, int zombieColumn) {
+    public Zombie(int zombieRow, int zombieColumn) {
         this.logic = new Logic();
         this.zombieRow = zombieRow;
         this.zombieColumn = zombieColumn;
-        this.logic.cell[zombieRow][zombieColumn].setIdAndImage(3);
+        this.logic.cell[zombieRow][zombieColumn].setIdAndImage(8);
     }
     
     public void run() {
-        this.logic.cell[0][0].setIdAndImage(3);
+        this.logic.cell[0][0].setIdAndImage(8);
         int random;
         while(true){
             random = (int) (Math.random() * 3);
-            if(random == 0){
-                zombieUp();
-            } else if(random == 1){
-                zombieDown();
-            } else if(random == 2){
-                zombieLeft();
-            } else if(random == 3){
-                zombieRight();
-            }
+//            if(random == 0){
+//                zombieUp();
+//            } else if(random == 1){
+//                zombieDown();
+//            } else if(random == 2){
+//                zombieLeft();
+//            } else if(random == 3){
+//                zombieRight();
+//            }
             try {
                 this.wait(3000);
             } catch (InterruptedException ex) {
-                Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Zombie.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
        

@@ -5,7 +5,7 @@
  */
 package progra2proyecto3;
 
-import domain.Hilo;
+import domain.Zombie;
 import domain.Player;
 import logic.Logic;
 import java.net.URL;
@@ -37,7 +37,7 @@ public class FXMLDocumentController implements Initializable {
 
     private static Logic logic;
     private Player player;
-    private Hilo zombie;
+    private Zombie zombie;
 
     @FXML
     private Canvas caca;
@@ -56,6 +56,7 @@ public class FXMLDocumentController implements Initializable {
         this.player = new Player();
         updateInterface();
         addKeyAction();
+//        zombieThread();
         
         AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Indiana Jones Theme 8-Bit.mp3").toString());
         note.play();
@@ -136,7 +137,9 @@ public class FXMLDocumentController implements Initializable {
 
     private void zombieThread() {
         Runnable runnable = () -> {
-            Hilo h = new Hilo(0, 0);
+           
+            Zombie h = new Zombie(0, 0); 
+            
             int random;
             while (true) {
                 random = (int) (Math.random() * 4);
@@ -157,7 +160,7 @@ public class FXMLDocumentController implements Initializable {
                 try {
                     Thread.sleep(200);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Zombie.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
