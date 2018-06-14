@@ -56,10 +56,10 @@ public class FXMLDocumentController implements Initializable {
         this.player = new Player();
         updateInterface();
         addKeyAction();
-//        zombieThread();
+        zombieThread();
         
-        AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Indiana Jones Theme 8-Bit.mp3").toString());
-        note.play();
+//        AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Indiana Jones Theme 8-Bit.mp3").toString());
+//        note.play();
     }
 
     private void updateInterface() {
@@ -138,7 +138,7 @@ public class FXMLDocumentController implements Initializable {
     private void zombieThread() {
         Runnable runnable = () -> {
            
-            Zombie h = new Zombie(0, 0); 
+            Zombie h = new Zombie(); 
             
             int random;
             while (true) {

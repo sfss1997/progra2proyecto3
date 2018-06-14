@@ -113,8 +113,8 @@ public class Player {
     public void playerLeft() {
         this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(0);
         if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 0
-                && isEarthRight() == true) {
-            this.playerRow++;
+                && isEarthLeft()== true) {
+            this.playerColumn--;
         }
 
         playerWay(this.weapon, PlayerWay.LEFT);
