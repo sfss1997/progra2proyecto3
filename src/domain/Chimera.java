@@ -43,8 +43,11 @@ public class Chimera {
     public void chimeraLeft() {
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdAndImage(0);
         if (this.chimeraColumn > 0 && this.logic.cell[this.chimeraRow][this.chimeraColumn-1].getID() == 0
-                && isEarthLeft() == true) {
+                /*&& isEarthLeft() == true*/) {
             this.chimeraColumn--;
+            while(isEarthDown(this.chimeraRow, this.chimeraColumn) == false){
+                this.chimeraRow++;
+            }
         }
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdAndImage(7);
     }
@@ -52,8 +55,11 @@ public class Chimera {
     public void chimeraRight() {
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdAndImage(0);
         if (chimeraColumn < this.logic.cell[0].length-1 && this.logic.cell[this.chimeraRow][this.chimeraColumn+1].getID() == 0
-                && isEarthRight() == true) {
+                /*&& isEarthRight() == true*/) {
             this.chimeraColumn++;
+            while(isEarthDown(this.chimeraRow, this.chimeraColumn) == false){
+                this.chimeraRow++;
+            }
         }
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdAndImage(7);
     }

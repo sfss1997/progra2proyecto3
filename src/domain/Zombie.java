@@ -43,8 +43,11 @@ public class Zombie {
     public void zombieLeft() {
         this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(0);
         if (this.zombieColumn > 0 && this.logic.cell[this.zombieRow][this.zombieColumn-1].getID() == 0
-                && isEarthLeft() == true) {
+                /*&& isEarthLeft() == true*/) {
             this.zombieColumn--;
+            while(isEarthDown(this.zombieRow, this.zombieColumn) == false){
+                this.zombieRow++;
+            }
         }
         this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(8);
     }
@@ -52,8 +55,11 @@ public class Zombie {
     public void zombieRight() {
         this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(0);
         if (zombieColumn < this.logic.cell[0].length-1 && this.logic.cell[this.zombieRow][this.zombieColumn+1].getID() == 0
-                && isEarthRight() == true) {
+                /*&& isEarthRight() == true*/) {
             this.zombieColumn++;
+            while(isEarthDown(this.zombieRow, this.zombieColumn) == false){
+                this.zombieRow++;
+            }
         }
         this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(8);
     }

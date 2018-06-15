@@ -39,6 +39,8 @@ public class FXMLDocumentController implements Initializable {
     private static Logic logic;
     private Player player;
     private Zombie zombie;
+    private int limZ;
+    private int limC;
 
     @FXML
     private Canvas caca;
@@ -49,6 +51,9 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
+        this.limC = 3;
+        this.limZ = 5;
+        
         this.logic = new Logic();
         this.anchorPane.setPrefSize(configuration.getWidth() * 75, configuration.getHeight() * 75);
         this.caca.setHeight(configuration.getHeight() * 75);
@@ -169,7 +174,7 @@ public class FXMLDocumentController implements Initializable {
         t.start();
 
     }
-    
+
     private void chimeraThread() {
         Runnable runnable = () -> {
 
@@ -207,7 +212,9 @@ public class FXMLDocumentController implements Initializable {
     private void godThread() {
         Runnable runnable = () -> {
 
-            while (true) {
+            for (int i = 0; i < 100; i++) {
+                
+            
                 int random = (int) ((Math.random() * 101) + 1);
                 int stone = configuration.getProbabilities().getStone();
                 int zombie = stone + configuration.getProbabilities().getZombie();
@@ -220,12 +227,14 @@ public class FXMLDocumentController implements Initializable {
                         this.logic.cell[randomRow][randomColumn].setIdAndImage(9);
                         System.out.print("God crea tierra");
                     }
-                } else if (random > stone && random <= zombie) {
+                } else if (random > stone && random <= zombie && limZ > 0) {
                     zombieThread();
                     System.out.print("God crea un nuevo zombie");
-                } else if (random > zombie && random <= chimera) {
-                  chimeraThread();
-                  System.out.print("God crea un nuevo dragón");
+                    limZ--;
+                } else if (random > zombie && random <= chimera && limC > 0) {
+                    chimeraThread();
+                    System.out.print("God crea un nuevo dragón");
+                    limC--;
                 }
                 try {
                     Thread.sleep(100);
@@ -242,16 +251,15 @@ public class FXMLDocumentController implements Initializable {
     private void downThread() {
 
         Runnable runnable = () -> {
-
-            boolean x = true;
-            while (x == true) {
+            while (true) {
                 int playerRow = player.getPlayerRow();
                 int playerColumn = player.getPlayerColumn();
                 int weapon = player.getWeapon();
                 if (player.isEarthDown(playerRow, playerColumn) == true) {
-                    System.out.println("aaaaa");
-                    x = false;
+
                     updateInterface();
+                    
+                    break;
                 } else if (player.isEarthDown(playerRow, playerColumn) == false) {
                     this.logic.cell[playerRow][playerColumn].setIdAndImage(0);
                     player.setPlayerRow(playerRow++);

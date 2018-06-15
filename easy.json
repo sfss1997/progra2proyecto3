@@ -4,9 +4,9 @@
   "height": 9,
   "type": "random",
   "probabilities": {
-    "stone": 5,
-    "zombie": 2,
-    "chimera": 1
+    "stone": 10,
+    "zombie": 7,
+    "chimera": 5
   },
   "player": {
     "visionRange": 4,
