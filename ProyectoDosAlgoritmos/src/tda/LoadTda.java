@@ -3,6 +3,7 @@ package tda;
 
 import domain.Batch;
 import domain.Category;
+import domain.DistributionOrder;
 import domain.TransportUnit;
 import domain.User;
 import java.util.HashMap;
@@ -22,6 +23,10 @@ public class LoadTda {
     public static Map<Integer, Batch> batchMap = new TreeMap<>();
     public static Map<Integer, TransportUnit> transportUnitMap = new LinkedHashMap<>();
     //Bodega, grafo con matriz de adyacencia
-    //orden distribución
+    public static LinkedList<DistributionOrder> distributionOrderList = new LinkedList<>();
     public static LinkedList<User> userList = new LinkedList<>();
+    
+    public void tda() {
+        
+    }
 }
