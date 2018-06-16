@@ -91,6 +91,7 @@ public class Cell extends Pane {
      *
      * @param id
      */
+    
     public void setIdAndImage(int id) {
         if (id == 0) {
             this.getChildren().clear();

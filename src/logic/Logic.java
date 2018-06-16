@@ -21,6 +21,8 @@ public class Logic {
 
     public static Cell[][] cell;
 
+    public static Live[] live;
+    
     public static Configuration configuration = new Configuration();
 
     public Logic() {
@@ -30,6 +32,10 @@ public class Logic {
     private void init() {
         if (cell == null) {
             this.cell = new Cell[configuration.getHeight()][configuration.getWidth()];
+            this.live = new Live[3];
+            live[0]=new Live();
+            live[1]=new Live();
+            live[2]=new Live();
         }
     }
 
@@ -66,5 +72,4 @@ public class Logic {
             }
         }
     }
-
 }

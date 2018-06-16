@@ -28,6 +28,7 @@ public class Player {
     private int defense;
     private int shortAttack;
     private int LongAttack;
+    private int live;
     private float delay;
     private int range;
     private static PlayerWay way;
@@ -38,6 +39,7 @@ public class Player {
         findEarth();
         this.way = PlayerWay.LEFT;
         this.weapon = 1;
+        this.live = 3;
     }
 
     public void changeWeapons(int i) {
@@ -304,6 +306,16 @@ public class Player {
     public static void setWeapon(int weapon) {
         Player.weapon = weapon;
     }
+
+    public int getLive() {
+        return live;
+    }
+
+    public void setLive(int live) {
+        this.live = live;
+    }
+    
+    
 
     @Override
     public String toString() {

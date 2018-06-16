@@ -27,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
+import logic.Live;
 import static logic.Logic.configuration;
 import logic.PlayerWay;
 
@@ -50,7 +51,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        
         this.limC = 3;
         this.limZ = 5;
         
@@ -64,8 +65,8 @@ public class FXMLDocumentController implements Initializable {
         addKeyAction();
         godThread();
 
-//        AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Indiana Jones Theme 8-Bit.mp3").toString());
-//        note.play();
+        AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Indiana Jones Theme 8-Bit.mp3").toString());
+        note.play();
     }
 
     private void updateInterface() {
@@ -82,8 +83,34 @@ public class FXMLDocumentController implements Initializable {
 
             }
         }
+        if(player.getLive()==3){
+            this.logic.live[0].setIdAndImage(1);
+            this.logic.live[1].setIdAndImage(1);
+            this.logic.live[2].setIdAndImage(1);
+        }else if(player.getLive()==2){
+            this.logic.live[0].setIdAndImage(0);
+            this.logic.live[1].setIdAndImage(1);
+            this.logic.live[2].setIdAndImage(1);
+        }else if(player.getLive()==1){
+            this.logic.live[0].setIdAndImage(0);
+            this.logic.live[1].setIdAndImage(0);
+            this.logic.live[2].setIdAndImage(1);
+        }else if(player.getLive()==0){
+            this.logic.live[0].setIdAndImage(0);
+            this.logic.live[1].setIdAndImage(0);
+            this.logic.live[2].setIdAndImage(0);
+        }
+        for (int i = 0; i < 3; i++) {
+            Image imageView = this.logic.live[i].getImage();
+            
+            int x=(configuration.getWidth()* 75)-30;
+            int y= i*30;
+            caca.getGraphicsContext2D().drawImage(imageView, x, y);
+            
+        }
 
     }
+    
 
     public void addKeyAction() {
         anchorPane.setOnKeyPressed(e -> {
@@ -115,7 +142,20 @@ public class FXMLDocumentController implements Initializable {
                 this.player.changeWeapons(3);
                 updateInterface();
             }
-
+            
+            if (e.getCode() == KeyCode.A) {
+                this.player.setLive(0);
+                updateInterface();
+            } else if (e.getCode()== KeyCode.S) {
+                this.player.setLive(1);
+                updateInterface();
+            } else if (e.getCode()== KeyCode.D) {
+                this.player.setLive(2);
+                updateInterface();
+            } else if (e.getCode()== KeyCode.F) {
+                this.player.setLive(3);
+                updateInterface();
+            }
             if (e.isControlDown() && e.getCode() == KeyCode.RIGHT) {
                 this.player.removeEarthRight();
                 updateInterface();
@@ -237,7 +277,7 @@ public class FXMLDocumentController implements Initializable {
                     limC--;
                 }
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(2000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
