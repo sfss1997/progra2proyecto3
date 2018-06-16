@@ -102,6 +102,8 @@ public class MenuController implements Initializable {
         
         window.setScene(tableViewScene);
         window.setResizable(false);
+        window.setX(0);
+        window.setY(0);
         window.show();
     }
     
