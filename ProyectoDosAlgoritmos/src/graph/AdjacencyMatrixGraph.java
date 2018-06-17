@@ -1,6 +1,8 @@
 
 package lab_grafos_algoritmos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Equipo
@@ -130,6 +132,14 @@ public class AdjacencyMatrixGraph implements Graph {
             }
         }
         return output;
+    }
+    
+    public ArrayList list() {
+        ArrayList arrayList = new ArrayList();
+        for (int i = 0; i < this.counter; i++) {
+            arrayList.add(this.vertexList[i].element);
+        }
+        return arrayList;
     }
 
     @Override
