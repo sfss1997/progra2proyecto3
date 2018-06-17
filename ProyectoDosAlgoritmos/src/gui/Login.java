@@ -1,9 +1,7 @@
 
 package gui;
 
-import domain.User;
 import tda.CrudMaintenance;
-import static tda.LoadTda.userList;
 
 /**
  * Interfaz ventana principal login.
@@ -136,11 +134,7 @@ public class Login extends javax.swing.JFrame {
         LogisticsDistribution logisticsDistribution = new LogisticsDistribution();
         CrudMaintenance crudMaintenance= new CrudMaintenance();
         Administrator administrator = new Administrator();
-        User operator = new User(1, "Sergio", "Operador", "s", "123");
-        User administrador = new User(2, "Wilmer", "Administrador", "w", "123");
-        userList.add(operator);
-        userList.add(administrador);
-        
+
         if (crudMaintenance.validateUser(userNameTextField.getText(), passwordTextField.getText())) {
             if (crudMaintenance.validateRole(userNameTextField.getText()) == 1) {
                 logisticsDistribution.setVisible(true);

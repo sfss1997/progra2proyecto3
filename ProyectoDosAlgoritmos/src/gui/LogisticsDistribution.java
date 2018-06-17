@@ -1,6 +1,11 @@
 
 package gui;
 
+import domain.User;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import static tda.LoadTda.userList;
+
 /**
  * Interfaz módulo Logística de distribución.
  * @author Nicole Fonseca, Wilmer Mata, Sergio Siles
@@ -12,6 +17,18 @@ public class LogisticsDistribution extends javax.swing.JFrame {
      */
     public LogisticsDistribution() {
         initComponents();
+
+            listProducts.setModel(new javax.swing.AbstractListModel<String>() {
+                String[] strings = {"s"};
+
+                public int getSize() {
+                    return strings.length;
+                }
+
+                public String getElementAt(int i) {
+                    return strings[i];
+                }
+            });
     }
 
     /**
@@ -26,7 +43,7 @@ public class LogisticsDistribution extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listProducts = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -49,12 +66,7 @@ public class LogisticsDistribution extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/carrito.png"))); // NOI18N
         jLabel1.setText("Productos");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listProducts);
 
         jLabel2.setText("***IMAGEN PRODUCTO***");
 
@@ -280,7 +292,6 @@ public class LogisticsDistribution extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
@@ -289,6 +300,7 @@ public class LogisticsDistribution extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JList<String> listProducts;
     private javax.swing.JButton returnLoginButton;
     // End of variables declaration//GEN-END:variables
 }
