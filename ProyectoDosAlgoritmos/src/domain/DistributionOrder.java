@@ -7,7 +7,7 @@ import java.util.LinkedList;
  *
  * @author Nicole Fonseca, Wilmer Mata, Sergio Siles
  */
-public class DistributionOrder {
+public class DistributionOrder  implements java.io.Serializable{
     
     private int idDistributionOrder;
     private int idOriginCellar;

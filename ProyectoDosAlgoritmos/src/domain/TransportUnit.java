@@ -5,7 +5,7 @@ package domain;
  *
  * @author Nicole Fonseca, Wilmer Mata, Sergio Siles
  */
-public class TransportUnit {
+public class TransportUnit  implements java.io.Serializable{
     
     private int idTransportUnit;
     private String plate;

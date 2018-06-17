@@ -9,7 +9,7 @@ package domain;
  *
  * @author Nicole Fonseca, Wilmer Mata, Sergio Siles
  */
-public class Product {
+public class Product  implements java.io.Serializable{
     
     private int idProduct;
     private String name;

@@ -7,7 +7,7 @@ import java.util.Date;
  *
  * @author Nicole Fonseca, Wilmer Mata, Sergio Siles
  */
-public class Batch {
+public class Batch  implements java.io.Serializable{
     
     private int idBatch;
     private String batchCode;

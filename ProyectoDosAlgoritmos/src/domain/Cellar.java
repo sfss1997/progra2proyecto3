@@ -5,7 +5,7 @@ package domain;
  *
  * @author Nicole Fonseca, Wilmer Mata, Sergio Siles
  */
-public class Cellar {
+public class Cellar  implements java.io.Serializable {
     
     private int idCellar;
     private String name;

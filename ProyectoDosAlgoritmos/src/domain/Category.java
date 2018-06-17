@@ -5,7 +5,7 @@ package domain;
  *
  * @author Nicole Fonseca, Wilmer Mata, Sergio Siles
  */
-public class Category {
+public class Category implements java.io.Serializable{
     
     private int idCategory;
     private String name;
