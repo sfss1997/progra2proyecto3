@@ -3,7 +3,6 @@ package proyectodosalgoritmos;
 
 import gui.Login;
 
-
 /**
  *
  * @author Nicole Fonseca, Wilmer Mata, Sergio Siles

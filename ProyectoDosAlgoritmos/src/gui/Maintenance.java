@@ -287,7 +287,7 @@ public class Maintenance extends javax.swing.JFrame {
         jComboBox5 = new javax.swing.JComboBox<>();
         jComboBox6 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        returnAdministratorButton = new javax.swing.JButton();
 
         jTextField15.setText("jTextField15");
 
@@ -1343,15 +1343,15 @@ public class Maintenance extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel1.setText("Mantenimientos");
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/salir-con-boton-en-esquema.png"))); // NOI18N
-        jButton1.setText("Salir");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        returnAdministratorButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        returnAdministratorButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/salir-con-boton-en-esquema.png"))); // NOI18N
+        returnAdministratorButton.setText("Salir");
+        returnAdministratorButton.setBorderPainted(false);
+        returnAdministratorButton.setContentAreaFilled(false);
+        returnAdministratorButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        returnAdministratorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                returnAdministratorButtonActionPerformed(evt);
             }
         });
 
@@ -1361,7 +1361,7 @@ public class Maintenance extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(returnAdministratorButton)
                 .addGap(50, 50, 50))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(390, 390, 390)
@@ -1377,7 +1377,7 @@ public class Maintenance extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(returnAdministratorButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1397,9 +1397,11 @@ public class Maintenance extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void returnAdministratorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnAdministratorButtonActionPerformed
+        Administrator administrator = new Administrator();
+        administrator.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_returnAdministratorButtonActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -1473,7 +1475,6 @@ public class Maintenance extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxRole;
     private javax.swing.JButton deleteUserButton;
     private javax.swing.JTextField deleteUserTextField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -1722,6 +1723,7 @@ public class Maintenance extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker jXDatePicker4;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JPasswordField passwordTextField;
+    private javax.swing.JButton returnAdministratorButton;
     private javax.swing.JLabel roleLabel;
     private javax.swing.JTextField serchName;
     private javax.swing.JButton serchUserButton;
