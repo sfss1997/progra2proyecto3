@@ -110,8 +110,8 @@ public class NewMain {
         User user0 = new User(0, "Nikol", "Administrador", "Nicky", "1234");
         User user1 = new User(1, "Guilberth", "Operador", "Willy", "1234");
         User user2 = new User(2, "Sergio Siles", "Operador", "sfss1997", "1234");
-        User user3 = new User(3, "Elva Surita", "Conductor", "EV", "1234");
-        User user4 = new User(4, "Allan Brito", "Conductor", "Nalla", "1234");
+        User user3 = new User(3, "Elva Surita", "Operador", "EV", "1234");
+        User user4 = new User(4, "Allan Brito", "Operador", "Nalla", "1234");
         UserList.add(user0);
         UserList.add(user1);
         UserList.add(user2);
