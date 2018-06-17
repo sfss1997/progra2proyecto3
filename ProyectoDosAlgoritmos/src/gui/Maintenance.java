@@ -50,7 +50,7 @@ public class Maintenance extends javax.swing.JFrame {
         jTextField31 = new javax.swing.JTextField();
         jLabel90 = new javax.swing.JLabel();
         jTextField32 = new javax.swing.JTextField();
-        jButton23 = new javax.swing.JButton();
+        addCategoryButton = new javax.swing.JButton();
         jButton24 = new javax.swing.JButton();
         jLabel91 = new javax.swing.JLabel();
         jTextField33 = new javax.swing.JTextField();
@@ -247,21 +247,15 @@ public class Maintenance extends javax.swing.JFrame {
         jTextField40 = new javax.swing.JTextField();
         jButton28 = new javax.swing.JButton();
         jLabel106 = new javax.swing.JLabel();
-        jLabel107 = new javax.swing.JLabel();
         jLabel108 = new javax.swing.JLabel();
         jComboBox4 = new javax.swing.JComboBox<>();
         jLabel109 = new javax.swing.JLabel();
         jLabel110 = new javax.swing.JLabel();
         jLabel111 = new javax.swing.JLabel();
-        jLabel112 = new javax.swing.JLabel();
         jLabel113 = new javax.swing.JLabel();
-        jLabel114 = new javax.swing.JLabel();
         jLabel115 = new javax.swing.JLabel();
-        jLabel116 = new javax.swing.JLabel();
         jLabel117 = new javax.swing.JLabel();
-        jLabel118 = new javax.swing.JLabel();
         jLabel119 = new javax.swing.JLabel();
-        jLabel120 = new javax.swing.JLabel();
         jLabel121 = new javax.swing.JLabel();
         jTextField43 = new javax.swing.JTextField();
         jLabel122 = new javax.swing.JLabel();
@@ -286,6 +280,13 @@ public class Maintenance extends javax.swing.JFrame {
         jTextField50 = new javax.swing.JTextField();
         jComboBox5 = new javax.swing.JComboBox<>();
         jComboBox6 = new javax.swing.JComboBox<>();
+        jLabel132 = new javax.swing.JLabel();
+        jLabel133 = new javax.swing.JLabel();
+        jLabel135 = new javax.swing.JLabel();
+        jLabel136 = new javax.swing.JLabel();
+        jLabel137 = new javax.swing.JLabel();
+        jLabel138 = new javax.swing.JLabel();
+        jLabel139 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         returnAdministratorButton = new javax.swing.JButton();
 
@@ -344,8 +345,8 @@ public class Maintenance extends javax.swing.JFrame {
         jLabel90.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel90.setText("Descripción:");
 
-        jButton23.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jButton23.setText("Agregar");
+        addCategoryButton.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        addCategoryButton.setText("Agregar");
 
         jButton24.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jButton24.setText("Actualizar");
@@ -381,7 +382,7 @@ public class Maintenance extends javax.swing.JFrame {
                             .addComponent(jTextField28, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
-                        .addComponent(jButton23)))
+                        .addComponent(addCategoryButton)))
                 .addGap(51, 51, 51)
                 .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
@@ -480,7 +481,7 @@ public class Maintenance extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addComponent(jButton23))
+                                .addComponent(addCategoryButton))
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jSeparator15, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                                 .addComponent(jSeparator14)
@@ -1225,7 +1226,6 @@ public class Maintenance extends javax.swing.JFrame {
         jLabel106.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel106.setText("Unidad medida:");
         jPanel7.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, -1, -1));
-        jPanel7.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 100, 10));
 
         jLabel108.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel108.setText("Valor unidad:");
@@ -1241,27 +1241,22 @@ public class Maintenance extends javax.swing.JFrame {
         jLabel111.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel111.setText("Descripción:");
         jPanel7.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, -1));
-        jPanel7.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 100, 20));
 
         jLabel113.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel113.setText("Lote:");
         jPanel7.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
-        jPanel7.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 100, 20));
 
         jLabel115.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel115.setText("Categoría:");
         jPanel7.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, -1));
-        jPanel7.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 90, 20));
 
         jLabel117.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel117.setText("Precio:");
         jPanel7.add(jLabel117, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, -1, -1));
-        jPanel7.add(jLabel118, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 90, 20));
 
         jLabel119.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel119.setText("Fotografía:");
         jPanel7.add(jLabel119, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, -1, -1));
-        jPanel7.add(jLabel120, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 80, 50));
 
         jLabel121.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel121.setText("Nombre:");
@@ -1337,6 +1332,13 @@ public class Maintenance extends javax.swing.JFrame {
         jPanel7.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 200, 80, -1));
 
         jPanel7.add(jComboBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 130, 100, -1));
+        jPanel7.add(jLabel132, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 100, 10));
+        jPanel7.add(jLabel133, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 100, 10));
+        jPanel7.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 100, 20));
+        jPanel7.add(jLabel136, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 100, 20));
+        jPanel7.add(jLabel137, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 100, 10));
+        jPanel7.add(jLabel138, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 100, 20));
+        jPanel7.add(jLabel139, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, 70, 40));
 
         jTabbedPane1.addTab("Productos", jPanel7);
 
@@ -1471,6 +1473,7 @@ public class Maintenance extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addCategoryButton;
     private javax.swing.JButton addUserButton;
     private javax.swing.JComboBox<String> comboBoxRole;
     private javax.swing.JButton deleteUserButton;
@@ -1489,7 +1492,6 @@ public class Maintenance extends javax.swing.JFrame {
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
@@ -1519,22 +1521,16 @@ public class Maintenance extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
-    private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel108;
     private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel110;
     private javax.swing.JLabel jLabel111;
-    private javax.swing.JLabel jLabel112;
     private javax.swing.JLabel jLabel113;
-    private javax.swing.JLabel jLabel114;
     private javax.swing.JLabel jLabel115;
-    private javax.swing.JLabel jLabel116;
     private javax.swing.JLabel jLabel117;
-    private javax.swing.JLabel jLabel118;
     private javax.swing.JLabel jLabel119;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel120;
     private javax.swing.JLabel jLabel121;
     private javax.swing.JLabel jLabel122;
     private javax.swing.JLabel jLabel123;
@@ -1547,6 +1543,13 @@ public class Maintenance extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel130;
     private javax.swing.JLabel jLabel131;
+    private javax.swing.JLabel jLabel132;
+    private javax.swing.JLabel jLabel133;
+    private javax.swing.JLabel jLabel135;
+    private javax.swing.JLabel jLabel136;
+    private javax.swing.JLabel jLabel137;
+    private javax.swing.JLabel jLabel138;
+    private javax.swing.JLabel jLabel139;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;

@@ -1,7 +1,11 @@
 
 package tda;
 
+import domain.Category;
+import domain.Product;
 import domain.User;
+import java.util.Iterator;
+import static tda.LoadTda.categoryMap;
 import static tda.LoadTda.userList;
 
 /**
@@ -43,19 +47,45 @@ public class CrudMaintenance {
     public void deleteProduct() {
     }
 
-    public void searchProduct() {
+    public Product getProduct(String name) {
+//        for (int i = 0; i <= administratorList.size() - 1; i++) {
+//            Administrator administrator = (Administrator) administratorList.get(i);
+//            if (administrator.getMail().equalsIgnoreCase(mail)) {
+//                return administrator;
+//            }
+//        }
+        return null;
+    }
+    
+    public Boolean existsProduct(String name) {
+//        for (int i = 0; i <= agentList.size() - 1; i++) {
+//            Agent agent = (Agent) agentList.get(i);
+//            String user = agent.getMail();
+//            if (mail.equalsIgnoreCase(user)) {
+//                return true;
+//            }
+//        }
+        return false;
     }
 
     public void updateProduct() {
     }
     
-    public void addCategory() {
+    public void addCategory(String name, String description) {
+        Category category = new Category(idCategory(), name, description);
+        categoryMap.put(name, category);
+        System.out.println(categoryMap.toString());
+    }
+    
+    public int idCategory() {
+       Iterator iterator = categoryMap.keySet().iterator();
+        while (iterator.hasNext()) {
+            String key = (String) iterator.next();
+        }
+        return -1;
     }
 
     public void deleteCategory() {
-    }
-
-    public void searchCategory() {
     }
 
     public void updateCategory() {
@@ -67,9 +97,6 @@ public class CrudMaintenance {
     public void deleteBacth() {
     }
 
-    public void searchBacth() {
-    }
-
     public void updateBacth() {
     }
     
@@ -79,10 +106,25 @@ public class CrudMaintenance {
     public void deleteTransportUnit() {
     }
 
-    public void searchTransportUnit() {
+    public void updateTransportUnit() {
+    }
+    
+    public void addUser() {
     }
 
-    public void updateTransportUnit() {
+    public void deleteUser() {
+    }
+
+    public void updateUser() {
+    }
+    
+    public void addCellar() {
+    }
+
+    public void deleteCellar() {
+    }
+
+    public void updateCellar() {
     }
     
 }
