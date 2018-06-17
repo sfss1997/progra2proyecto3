@@ -1,6 +1,7 @@
 
 package domain;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -14,13 +15,13 @@ public class DistributionOrder  implements java.io.Serializable{
     private int idDestinyCellar;
     private double totalAmount;
     private float weightTotal;
-    private LinkedList<Product> productList;
+    private ArrayList<Product> productList;
     private int idOperator;
 
     public DistributionOrder() {
     }
 
-    public DistributionOrder(int idDistributionOrder, int idOriginCellar, int idDestinyCellar, double totalAmount, float weightTotal, LinkedList<Product> productList, int idOperator) {
+    public DistributionOrder(int idDistributionOrder, int idOriginCellar, int idDestinyCellar, double totalAmount, float weightTotal, ArrayList<Product> productList, int idOperator) {
         this.idDistributionOrder = idDistributionOrder;
         this.idOriginCellar = idOriginCellar;
         this.idDestinyCellar = idDestinyCellar;
@@ -103,14 +104,14 @@ public class DistributionOrder  implements java.io.Serializable{
     /**
      * @return the productList
      */
-    public LinkedList<Product> getProductList() {
+    public ArrayList<Product> getProductList() {
         return productList;
     }
 
     /**
      * @param productList the productList to set
      */
-    public void setProductList(LinkedList<Product> productList) {
+    public void setProductList(ArrayList<Product> productList) {
         this.productList = productList;
     }
 
