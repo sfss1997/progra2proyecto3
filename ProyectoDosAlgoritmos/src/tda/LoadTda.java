@@ -36,6 +36,9 @@ public class LoadTda {
     
     AdministratorFiles administratorFiles = new AdministratorFiles();
     
+    public void tdaProduct() {
+    }
+    
     public void tdaCategory() throws IOException, FileNotFoundException, ClassNotFoundException {
         ArrayList<Category> arrayList = administratorFiles.readCategoryFile();
         for (int i = 0; i < arrayList.size(); i++) {
