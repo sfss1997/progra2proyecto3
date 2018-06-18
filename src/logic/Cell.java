@@ -24,6 +24,7 @@ public class Cell extends Pane {
     private int row;
     private int column;
     private PlayerWay playerWay;
+    int idThread;
 
     public Cell(int i) {
         if (i == 0) {
@@ -41,7 +42,16 @@ public class Cell extends Pane {
             this.setIdAndImage(10);
             this.playerWay = PlayerWay.LEFT;
         }
+        this.idThread = -1;
 
+    }
+
+    public int getIdThread() {
+        return idThread;
+    }
+
+    public void setIdThread(int idThread) {
+        this.idThread = idThread;
     }
 
     public PlayerWay getPlayerWay() {

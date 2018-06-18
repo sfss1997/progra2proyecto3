@@ -18,30 +18,46 @@ public class Zombie {
     private Logic logic; 
     private int zombieRow;
     private int zombieColumn;
+    private static int idThread;
 
-    public Zombie() {
+    public Zombie(int idThread) {
         this.logic = new Logic();
+        this.idThread = idThread;
         findEarth();
+        
+    }
+
+    public int getIdThread() {
+        return idThread;
+    }
+
+    public void setIdThread(int idThread) {
+        this.idThread = idThread;
     }
     
     public void zombieUp() {
         this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(0);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdThread(-1);
         if (this.zombieRow > 0 && this.logic.cell[this.zombieRow-1][this.zombieColumn].getID() == 0) {
             this.zombieRow--;
         }
         this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(8);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdThread(idThread);
     }
 
     public void zombieDown() {
         this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(0);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdThread(-1);
         if (zombieRow < this.logic.cell.length-1 && this.logic.cell[this.zombieRow+1][this.zombieColumn].getID() == 0) {
             this.zombieRow++;
         }
         this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(8);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdThread(idThread);
     }
 
     public void zombieLeft() {
         this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(0);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdThread(-1);
         if (this.zombieColumn > 0 && this.logic.cell[this.zombieRow][this.zombieColumn-1].getID() == 0
                 /*&& isEarthLeft() == true*/) {
             this.zombieColumn--;
@@ -53,10 +69,12 @@ public class Zombie {
             }
         }
         this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(8);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdThread(idThread);
     }
 
     public void zombieRight() {
         this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(0);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdThread(-1);
         if (zombieColumn < this.logic.cell[0].length-1 && this.logic.cell[this.zombieRow][this.zombieColumn+1].getID() == 0
                 /*&& isEarthRight() == true*/) {
             this.zombieColumn++;
@@ -68,6 +86,7 @@ public class Zombie {
             }
         }
         this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(8);
+        this.logic.cell[this.zombieRow][this.zombieColumn].setIdThread(idThread);
     }
     
     /////////////////////////////////////////////////////////////////////////////////////////////
@@ -117,7 +136,7 @@ public class Zombie {
                 this.zombieRow = randomRow;
                 this.zombieColumn = randomColumn;
                 this.logic.cell[zombieRow][zombieColumn].setIdAndImage(8);
-
+                this.logic.cell[zombieRow][zombieColumn].setIdThread(idThread);
                 randomRow = this.logic.cell.length;
                 randomColumn = this.logic.cell[0].length;
                 break;

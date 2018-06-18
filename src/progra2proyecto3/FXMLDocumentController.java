@@ -10,6 +10,7 @@ import domain.Zombie;
 import domain.Player;
 import logic.Logic;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,6 +43,10 @@ public class FXMLDocumentController implements Initializable {
     private Zombie zombie;
     private int limZ;
     private int limC;
+    private LinkedList<Thread> threadsList;
+    private static int idThread;
+    private static int playerRow;
+    private static int playerColumn;
 
     @FXML
     private Canvas caca;
@@ -62,6 +67,10 @@ public class FXMLDocumentController implements Initializable {
         this.caca.setWidth(configuration.getWidth() * 75);
         this.logic.createCell();
         this.player = new Player();
+        
+        this.threadsList = new LinkedList<>();
+        this.idThread = 0;
+        
         updateInterface();
         addKeyAction();
         godThread();
@@ -157,6 +166,7 @@ public class FXMLDocumentController implements Initializable {
                 this.player.setLive(3);
                 updateInterface();
             }
+            
             if (e.isControlDown() && e.getCode() == KeyCode.RIGHT) {
                 this.player.removeEarthRight();
                 updateInterface();
@@ -174,6 +184,17 @@ public class FXMLDocumentController implements Initializable {
                 updateInterface();
                 
             }
+            
+            //ataca
+            if (e.isAltDown()&& e.getCode() == KeyCode.RIGHT) {
+                atackRight();
+                updateInterface();
+                
+            } else if (e.isAltDown()&& e.getCode() == KeyCode.LEFT) {
+                atackLeft();
+                updateInterface();
+               
+            }
         });
 
     }
@@ -181,8 +202,8 @@ public class FXMLDocumentController implements Initializable {
     private void zombieThread() {
         Runnable runnable = () -> {
 
-            Zombie h = new Zombie();
-
+            Zombie h = new Zombie(this.idThread);
+            this.idThread++;
             int random;
             while (true) {
                 random = (int) (Math.random() * 4);
@@ -201,22 +222,27 @@ public class FXMLDocumentController implements Initializable {
                     updateInterface();
                 }
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(1000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Zombie.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
         Thread t = new Thread(runnable);
-        t.start();
+        threadsList.add(t);
+        if(threadsList.isEmpty()){
+            threadsList.get(0).start();
+        } else {
+            threadsList.get(threadsList.size()-1).start();
+        }
 
     }
 
     private void chimeraThread() {
         Runnable runnable = () -> {
 
-            Chimera c = new Chimera();
-
+            Chimera c = new Chimera(this.idThread);
+            this.idThread++;
             int random;
             while (true) {
                 random = (int) (Math.random() * 4);
@@ -235,14 +261,19 @@ public class FXMLDocumentController implements Initializable {
                     updateInterface();
                 }
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(1500);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Chimera.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
         Thread t = new Thread(runnable);
-        t.start();
+        threadsList.add(t);
+        if(threadsList.isEmpty()){
+            threadsList.get(0).start();
+        } else {
+            threadsList.get(threadsList.size()-1).start();
+        }
 
     }
 
@@ -285,40 +316,31 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
-    private void downThread() {
-
-        Runnable runnable = () -> {
-            while (true) {
-                int playerRow = player.getPlayerRow();
-                int playerColumn = player.getPlayerColumn();
-                int weapon = player.getWeapon();
-                if (player.isEarthDown(playerRow, playerColumn) == true) {
-
-                    updateInterface();
-                    
-                    break;
-                } else if (player.isEarthDown(playerRow, playerColumn) == false) {
-                    this.logic.cell[playerRow][playerColumn].setIdAndImage(0);
-                    player.setPlayerRow(playerRow++);
-                    player.playerWay(weapon, PlayerWay.RIGHT);
-                    updateInterface();
-                }
-
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        };
-        Thread t = new Thread(runnable);
-        t.start();
-    }
-
     @FXML
     private void x(ActionEvent event) {
         this.player.playerRight();
         updateInterface();
+    }
+    
+    public void atackRight(){
+        this.playerRow = this.player.getPlayerRow();
+        this.playerColumn = this.player.getPlayerColumn();
+        if(playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread() != -1){
+            System.out.println(">>>>>>>>>> " + this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread());
+            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).stop();
+            this.logic.cell[this.playerRow][this.playerColumn + 1].setIdAndImage(0);
+            this.logic.cell[this.playerRow][this.playerColumn + 1].setIdThread(-1);
+        }
+    }
+    
+    public void atackLeft(){
+        this.playerRow = this.player.getPlayerRow();
+        this.playerColumn = this.player.getPlayerColumn();
+        if(this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread() != -1){
+            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).stop();
+            this.logic.cell[this.playerRow][this.playerColumn + 1].setIdAndImage(0);
+            this.logic.cell[this.playerRow][this.playerColumn + 1].setIdThread(-1);
+        }
     }
 
 }
