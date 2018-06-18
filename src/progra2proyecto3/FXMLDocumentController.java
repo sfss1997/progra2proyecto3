@@ -187,11 +187,19 @@ public class FXMLDocumentController implements Initializable {
             
             //ataca
             if (e.isAltDown()&& e.getCode() == KeyCode.RIGHT) {
-                atackRight();
+                try {
+                    atackRight();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 updateInterface();
                 
             } else if (e.isAltDown()&& e.getCode() == KeyCode.LEFT) {
-                atackLeft();
+                try {
+                    atackLeft();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 updateInterface();
                
             }
@@ -322,22 +330,31 @@ public class FXMLDocumentController implements Initializable {
         updateInterface();
     }
     
-    public void atackRight(){
+    public void atackRight() throws InterruptedException{
         this.playerRow = this.player.getPlayerRow();
         this.playerColumn = this.player.getPlayerColumn();
         if(playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread() != -1){
             System.out.println(">>>>>>>>>> " + this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread());
+            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).suspend();
             this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).stop();
+            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).destroy();
+//            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).wait();
+//            threadsList.remove(this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()));
             this.logic.cell[this.playerRow][this.playerColumn + 1].setIdAndImage(0);
             this.logic.cell[this.playerRow][this.playerColumn + 1].setIdThread(-1);
         }
     }
     
-    public void atackLeft(){
+    public void atackLeft() throws InterruptedException{
         this.playerRow = this.player.getPlayerRow();
         this.playerColumn = this.player.getPlayerColumn();
         if(this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread() != -1){
+            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).suspend();
             this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).stop();
+            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).destroy();
+//            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).wait();
+//            threadsList.remove(this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()));
+           
             this.logic.cell[this.playerRow][this.playerColumn + 1].setIdAndImage(0);
             this.logic.cell[this.playerRow][this.playerColumn + 1].setIdThread(-1);
         }
