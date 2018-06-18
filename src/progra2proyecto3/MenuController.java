@@ -84,10 +84,10 @@ public class MenuController implements Initializable {
        }
        
 
-       AudioClip note = new AudioClip(this.getClass().getResource("/sounds/sm64_mario_press_start.wav").toString());
-        
-        note.play();
-        
+//       AudioClip note = new AudioClip(this.getClass().getResource("/sounds/sm64_mario_press_start.wav").toString());
+//        
+//        note.play();
+//        
         
        
     }

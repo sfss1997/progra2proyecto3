@@ -45,8 +45,11 @@ public class Zombie {
         if (this.zombieColumn > 0 && this.logic.cell[this.zombieRow][this.zombieColumn-1].getID() == 0
                 /*&& isEarthLeft() == true*/) {
             this.zombieColumn--;
-            while(isEarthDown(this.zombieRow, this.zombieColumn) == false){
-                this.zombieRow++;
+            if(this.logic.cell[this.zombieRow+1][this.zombieColumn].getID() != 7 ||
+                    this.logic.cell[this.zombieRow+1][this.zombieColumn].getID() != 8){
+                while (isEarthDown(this.zombieRow, this.zombieColumn) == false) {
+                    this.zombieRow++;
+                }
             }
         }
         this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(8);
@@ -57,8 +60,11 @@ public class Zombie {
         if (zombieColumn < this.logic.cell[0].length-1 && this.logic.cell[this.zombieRow][this.zombieColumn+1].getID() == 0
                 /*&& isEarthRight() == true*/) {
             this.zombieColumn++;
-            while(isEarthDown(this.zombieRow, this.zombieColumn) == false){
-                this.zombieRow++;
+           if(this.logic.cell[this.zombieRow+1][this.zombieColumn].getID() != 7 ||
+                    this.logic.cell[this.zombieRow+1][this.zombieColumn].getID() != 8){
+                while (isEarthDown(this.zombieRow, this.zombieColumn) == false) {
+                    this.zombieRow++;
+                }
             }
         }
         this.logic.cell[this.zombieRow][this.zombieColumn].setIdAndImage(8);
@@ -85,12 +91,15 @@ public class Zombie {
 
     public boolean isEarthDown(int row, int column) {
         if (row + 1 < this.logic.cell.length) {
-            if ((this.logic.cell[row + 1][column].getID() == 9 || this.logic.cell[row + 1][column].getID() == 10)
-                    && this.logic.cell[row][column].getID() == 0) {
-                return true;
-            } else {
-                return false;
-            }
+            
+                if ((this.logic.cell[row + 1][column].getID() == 9 || this.logic.cell[row + 1][column].getID() == 10)
+                        && this.logic.cell[row][column].getID() == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            
+
         } else {
             return false;
         }

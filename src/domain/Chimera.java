@@ -45,8 +45,11 @@ public class Chimera {
         if (this.chimeraColumn > 0 && this.logic.cell[this.chimeraRow][this.chimeraColumn-1].getID() == 0
                 /*&& isEarthLeft() == true*/) {
             this.chimeraColumn--;
-            while(isEarthDown(this.chimeraRow, this.chimeraColumn) == false){
-                this.chimeraRow++;
+            if(this.logic.cell[this.chimeraRow+1][this.chimeraColumn].getID() != 7 ||
+                    this.logic.cell[this.chimeraRow+1][this.chimeraColumn].getID() != 8){
+                while (isEarthDown(this.chimeraRow, this.chimeraColumn) == false) {
+                    this.chimeraRow++;
+                }
             }
         }
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdAndImage(7);
@@ -57,8 +60,11 @@ public class Chimera {
         if (chimeraColumn < this.logic.cell[0].length-1 && this.logic.cell[this.chimeraRow][this.chimeraColumn+1].getID() == 0
                 /*&& isEarthRight() == true*/) {
             this.chimeraColumn++;
-            while(isEarthDown(this.chimeraRow, this.chimeraColumn) == false){
-                this.chimeraRow++;
+            if(this.logic.cell[this.chimeraRow+1][this.chimeraColumn].getID() != 7 ||
+                    this.logic.cell[this.chimeraRow+1][this.chimeraColumn].getID() != 8){
+                while (isEarthDown(this.chimeraRow, this.chimeraColumn) == false) {
+                    this.chimeraRow++;
+                }
             }
         }
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdAndImage(7);
@@ -85,12 +91,17 @@ public class Chimera {
 
     public boolean isEarthDown(int row, int column) {
         if (row + 1 < this.logic.cell.length) {
-            if ((this.logic.cell[row + 1][column].getID() == 9 || this.logic.cell[row + 1][column].getID() == 10)
-                    && this.logic.cell[row][column].getID() == 0) {
-                return true;
+            if (this.logic.cell[row][column].getID() == 0) {
+                if ((this.logic.cell[row + 1][column].getID() == 9 || this.logic.cell[row + 1][column].getID() == 10)
+                        && this.logic.cell[row][column].getID() == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
-                return false;
+                return true;
             }
+
         } else {
             return false;
         }
