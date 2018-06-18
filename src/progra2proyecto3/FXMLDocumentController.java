@@ -52,6 +52,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
+        
         this.limC = 3;
         this.limZ = 5;
         
@@ -159,23 +160,19 @@ public class FXMLDocumentController implements Initializable {
             if (e.isControlDown() && e.getCode() == KeyCode.RIGHT) {
                 this.player.removeEarthRight();
                 updateInterface();
-                AudioClip note = new AudioClip(this.getClass().getResource("/sounds/BlazeHurt.mp3").toString());
-                note.play();
+                
             } else if (e.isControlDown() && e.getCode() == KeyCode.LEFT) {
                 this.player.removeEarthLeft();
                 updateInterface();
-                AudioClip note = new AudioClip(this.getClass().getResource("/sounds/BlazeHurt.mp3").toString());
-                note.play();
+               
             } else if (e.isControlDown() && e.getCode() == KeyCode.UP) {
                 this.player.removeEarthUp();
                 updateInterface();
-                AudioClip note = new AudioClip(this.getClass().getResource("/sounds/BlazeHurt.mp3").toString());
-                note.play();
+                
             } else if (e.isControlDown() && e.getCode() == KeyCode.DOWN) {
                 this.player.removeEarthDown();
                 updateInterface();
-                AudioClip note = new AudioClip(this.getClass().getResource("/sounds/BlazeHurt.mp3").toString());
-                note.play();
+                
             }
         });
 

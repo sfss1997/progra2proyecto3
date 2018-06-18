@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javafx.animation.PathTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import logic.Logic;
@@ -100,6 +101,8 @@ public class Player {
         this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(0);
         if (this.playerRow > 0 && this.logic.cell[this.playerRow - 1][this.playerColumn].getID() == 0) {
             this.playerRow--;
+            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/salto.mp3").toString());
+            note.play();
         }
         playerWay(this.weapon, this.way);
     }
@@ -108,6 +111,8 @@ public class Player {
         this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(0);
         if (playerRow < this.logic.cell.length - 1 && this.logic.cell[this.playerRow + 1][this.playerColumn].getID() == 0) {
             this.playerRow++;
+            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/salto.mp3").toString());
+            note.play();
         }
         playerWay(this.weapon, this.way);
     }
@@ -120,6 +125,8 @@ public class Player {
             while(isEarthDown(this.playerRow, this.playerColumn) == false){
                 this.playerRow++;
             }
+            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/salto.mp3").toString());
+            note.play();
         }
 
         playerWay(this.weapon, PlayerWay.LEFT);
@@ -133,6 +140,8 @@ public class Player {
             while(isEarthDown(this.playerRow, this.playerColumn) == false){
                 this.playerRow++;
             }
+            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/salto.mp3").toString());
+            note.play();
         }
         playerWay(this.weapon, PlayerWay.RIGHT);
     }
@@ -143,7 +152,10 @@ public class Player {
         if (this.playerRow > 0 && this.logic.cell[this.playerRow - 1][this.playerColumn].getID() == 9
                 && (idPlayer == 5 || idPlayer == 6)) {
             this.logic.cell[this.playerRow - 1][this.playerColumn].setIdAndImage(0);
+            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/pala.mp3").toString());
+            note.play();
         }
+        
     }
 
     public void removeEarthDown() {
@@ -155,8 +167,11 @@ public class Player {
             while(isEarthDown(this.playerRow, this.playerColumn) == false){
                 this.playerRow++;
             }
+            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/pala.mp3").toString());
+            note.play();
         }
         playerWay(weapon, PlayerWay.LEFT);
+
     }
 
     public void removeEarthLeft() {
@@ -164,7 +179,10 @@ public class Player {
         if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 9
                 && (idPlayer == 5 || idPlayer == 6)) {
             this.logic.cell[this.playerRow][this.playerColumn - 1].setIdAndImage(0);
+            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/pala.mp3").toString());
+            note.play();
         }
+        
     }
 
     public void removeEarthRight() {
@@ -172,7 +190,10 @@ public class Player {
         if (playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 9
                 && (idPlayer == 5 || idPlayer == 6)) {
             this.logic.cell[this.playerRow][this.playerColumn + 1].setIdAndImage(0);
+            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/pala.mp3").toString());
+            note.play();
         }
+        
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////
