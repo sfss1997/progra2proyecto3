@@ -114,11 +114,13 @@ public class Player {
 
     public void playerLeft() {
         this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(0);
-        if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 0
-                /*&& isEarthLeft() == true*/) {
+        if (this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 0 /*&& isEarthLeft() == true*/) {
             this.playerColumn--;
-            while(isEarthDown(this.playerRow, this.playerColumn) == false){
-                this.playerRow++;
+            if(this.logic.cell[this.playerRow+1][this.playerColumn].getID() != 7 ||
+                    this.logic.cell[this.playerRow+1][this.playerColumn].getID() != 8){
+                while (isEarthDown(this.playerRow, this.playerColumn) == false) {
+                    this.playerRow++;
+                }
             }
         }
 
@@ -127,11 +129,13 @@ public class Player {
 
     public void playerRight() {
         this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(0);
-        if (playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 0
-                /*&& isEarthRight() == true*/) {
+        if (playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 0 /*&& isEarthRight() == true*/) {
             this.playerColumn++;
-            while(isEarthDown(this.playerRow, this.playerColumn) == false){
-                this.playerRow++;
+            if(this.logic.cell[this.playerRow+1][this.playerColumn].getID() != 7 ||
+                    this.logic.cell[this.playerRow+1][this.playerColumn].getID() != 8){
+                while (isEarthDown(this.playerRow, this.playerColumn) == false) {
+                    this.playerRow++;
+                }
             }
         }
         playerWay(this.weapon, PlayerWay.RIGHT);
@@ -152,7 +156,7 @@ public class Player {
                 && (idPlayer == 5 || idPlayer == 6)) {
             this.logic.cell[this.playerRow + 1][this.playerColumn].setIdAndImage(0);
             this.logic.cell[this.playerRow][this.playerColumn].setIdAndImage(0);
-            while(isEarthDown(this.playerRow, this.playerColumn) == false){
+            while (isEarthDown(this.playerRow, this.playerColumn) == false) {
                 this.playerRow++;
             }
         }
@@ -196,15 +200,21 @@ public class Player {
 
     public boolean isEarthDown(int row, int column) {
         if (row + 1 < this.logic.cell.length) {
-            if ((this.logic.cell[row + 1][column].getID() == 9 || this.logic.cell[row + 1][column].getID() == 10)
-                    && this.logic.cell[row][column].getID() == 0) {
-                return true;
+            if (this.logic.cell[row][column].getID() == 0) {
+                if ((this.logic.cell[row + 1][column].getID() == 9 || this.logic.cell[row + 1][column].getID() == 10)
+                        && this.logic.cell[row][column].getID() == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
-                return false;
+                return true;
             }
+
         } else {
             return false;
         }
+
     }
 
     private void findEarth() {
@@ -212,9 +222,9 @@ public class Player {
         while (true) {
             int randomRow = (int) (Math.random() * this.logic.cell.length);
             int randomColumn = (int) (Math.random() * this.logic.cell[0].length);
-            
+
             if (isEarthDown(randomRow, randomColumn) == true) {
-                
+
                 this.playerRow = randomRow;
                 this.playerColumn = randomColumn;
                 this.logic.cell[playerRow][playerColumn].setIdAndImage(2);
@@ -314,8 +324,6 @@ public class Player {
     public void setLive(int live) {
         this.live = live;
     }
-    
-    
 
     @Override
     public String toString() {

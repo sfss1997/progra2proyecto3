@@ -65,8 +65,8 @@ public class FXMLDocumentController implements Initializable {
         addKeyAction();
         godThread();
 
-        AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Indiana Jones Theme 8-Bit.mp3").toString());
-        note.play();
+//        AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Indiana Jones Theme 8-Bit.mp3").toString());
+//        note.play();
     }
 
     private void updateInterface() {
