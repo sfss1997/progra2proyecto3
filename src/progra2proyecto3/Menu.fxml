@@ -14,7 +14,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="34.0" layoutY="179.0" prefHeight="17.0" prefWidth="228.0" text="Cambio de armas: botones 1,2,3" />
+      <Label layoutX="34.0" layoutY="179.0" prefHeight="17.0" prefWidth="228.0" text="Cambio de armas: A-S-D" />
       <Label layoutX="34.0" layoutY="210.0" prefHeight="17.0" prefWidth="169.0" text="Quitar tierra: ctrl+navegacion" />
       <Label layoutX="34.0" layoutY="243.0" text="Atacar: alt+navegación(izquierda-derecha) " />
      

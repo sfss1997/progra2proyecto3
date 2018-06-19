@@ -55,7 +55,7 @@ public class FXMLDocumentController implements Initializable {
     private static int playerColumn;
 
     @FXML
-    private Canvas caca;
+    private Canvas canvas;
     @FXML
     private AnchorPane anchorPane;
 
@@ -68,8 +68,8 @@ public class FXMLDocumentController implements Initializable {
 
         this.logic = new Logic();
         this.anchorPane.setPrefSize(configuration.getWidth() * 75, configuration.getHeight() * 75);
-        this.caca.setHeight(configuration.getHeight() * 75);
-        this.caca.setWidth(configuration.getWidth() * 75);
+        this.canvas.setHeight(configuration.getHeight() * 75);
+        this.canvas.setWidth(configuration.getWidth() * 75);
         this.logic.createCell();
         this.player = new Player();
 
@@ -94,7 +94,7 @@ public class FXMLDocumentController implements Initializable {
         if (this.player.getLive() < 0) {
             cambioScene("/progra2proyecto3/GameOver.fxml");
         }
-        caca.getGraphicsContext2D().clearRect(0, 0, configuration.getWidth() * 75, configuration.getHeight() * 75);
+        canvas.getGraphicsContext2D().clearRect(0, 0, configuration.getWidth() * 75, configuration.getHeight() * 75);
         for (int i = 0; i < this.logic.cell.length; i++) {
             for (int j = 0; j < this.logic.cell[0].length; j++) {
 
@@ -102,7 +102,7 @@ public class FXMLDocumentController implements Initializable {
                 int y = this.logic.cell[i][j].getRow() * 75;
                 int x = this.logic.cell[i][j].getColumn() * 75;
 
-                caca.getGraphicsContext2D().drawImage(imageView, x, y);
+                canvas.getGraphicsContext2D().drawImage(imageView, x, y);
 
             }
         }
@@ -128,7 +128,7 @@ public class FXMLDocumentController implements Initializable {
 
             int x = (configuration.getWidth() * 75) - 30;
             int y = i * 30;
-            caca.getGraphicsContext2D().drawImage(imageView, x, y);
+            canvas.getGraphicsContext2D().drawImage(imageView, x, y);
 
         }
 
@@ -426,9 +426,16 @@ public class FXMLDocumentController implements Initializable {
     public void atackRight() throws InterruptedException, IOException {
         this.playerRow = this.player.getPlayerRow();
         this.playerColumn = this.player.getPlayerColumn();
+         int idPlayer = this.logic.cell[this.playerRow][this.playerColumn].getID();
+       
         if (this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 7 || this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 8) {
-            this.logic.cell[this.playerRow][this.playerColumn + 1].setLives(this.logic.cell[this.playerRow][this.playerColumn + 1].getLives() - 1);
-            if (this.logic.cell[this.playerRow][this.playerColumn + 1].getLives() == 0) {
+            if((idPlayer==1 || idPlayer==2) && this.logic.cell[this.playerRow][this.playerColumn + 1].getLives() > 1 ){
+              
+                this.logic.cell[this.playerRow][this.playerColumn + 1].setLives(this.logic.cell[this.playerRow][this.playerColumn + 1].getLives() - 2);
+            }else{
+                this.logic.cell[this.playerRow][this.playerColumn + 1].setLives(this.logic.cell[this.playerRow][this.playerColumn + 1].getLives() - 1);
+            }
+                if (this.logic.cell[this.playerRow][this.playerColumn + 1].getLives() == 0) {
                 System.out.println(">>>>>>>>>> " + this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread());
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).suspend();
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).stop();
@@ -447,8 +454,15 @@ public class FXMLDocumentController implements Initializable {
     public void atackLeft() throws InterruptedException, IOException {
         this.playerRow = this.player.getPlayerRow();
         this.playerColumn = this.player.getPlayerColumn();
+        int idPlayer = this.logic.cell[this.playerRow][this.playerColumn].getID();
+        
         if (this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 7 || this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 8) {
-            this.logic.cell[this.playerRow][this.playerColumn - 1].setLives(this.logic.cell[this.playerRow][this.playerColumn - 1].getLives() - 1);
+            if((idPlayer==1 || idPlayer==2 )&& this.logic.cell[this.playerRow][this.playerColumn - 1].getLives() > 1){
+                this.logic.cell[this.playerRow][this.playerColumn - 1].setLives(this.logic.cell[this.playerRow][this.playerColumn - 1].getLives() - 2);
+            }
+            else{
+                this.logic.cell[this.playerRow][this.playerColumn - 1].setLives(this.logic.cell[this.playerRow][this.playerColumn - 1].getLives() - 1);
+            }
             if (this.logic.cell[this.playerRow][this.playerColumn - 1].getLives() == 0) {
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).suspend();
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).stop();
