@@ -2,4 +2,4 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-image: url('images/gameOver.gif');" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="progra2proyecto3.GameOverController" />
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1350.0" style="-fx-background-image: url('images/gameOver.gif');" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="progra2proyecto3.GameOverController" />

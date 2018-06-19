@@ -454,39 +454,42 @@ public class FXMLDocumentController implements Initializable {
     public void atackRight() throws InterruptedException, IOException {
         this.playerRow = this.player.getPlayerRow();
         this.playerColumn = this.player.getPlayerColumn();
-        this.logic.cell[this.playerRow][this.playerColumn + 1].setLives(this.logic.cell[this.playerRow][this.playerColumn + 1].getLives() - 1);
-        if (this.logic.cell[this.playerRow][this.playerColumn + 1].getLives() == 0) {
-            System.out.println(">>>>>>>>>> " + this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread());
+        if (this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 7 || this.logic.cell[this.playerRow][this.playerColumn + 1].getID() == 8) {
+            this.logic.cell[this.playerRow][this.playerColumn + 1].setLives(this.logic.cell[this.playerRow][this.playerColumn + 1].getLives() - 1);
+            if (this.logic.cell[this.playerRow][this.playerColumn + 1].getLives() == 0) {
+                System.out.println(">>>>>>>>>> " + this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread());
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).suspend();
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).stop();
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).destroy();
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).wait();
 //            threadsList.remove(this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()));
-            this.logic.cell[this.playerRow][this.playerColumn + 1].setIdAndImage(0);
-            this.logic.cell[this.playerRow][this.playerColumn + 1].setIdThread(-1);
-            updateInterface();
-            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Pacman-death-sound.mp3").toString());
-            note.play();
+                this.logic.cell[this.playerRow][this.playerColumn + 1].setIdAndImage(0);
+                this.logic.cell[this.playerRow][this.playerColumn + 1].setIdThread(-1);
+                updateInterface();
+                AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Pacman-death-sound.mp3").toString());
+                note.play();
+            }
         }
     }
 
     public void atackLeft() throws InterruptedException, IOException {
         this.playerRow = this.player.getPlayerRow();
         this.playerColumn = this.player.getPlayerColumn();
-
-        this.logic.cell[this.playerRow][this.playerColumn - 1].setLives(this.logic.cell[this.playerRow][this.playerColumn - 1].getLives() - 1);
-        if (this.logic.cell[this.playerRow][this.playerColumn - 1].getLives() == 0) {
+        if (this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 7 || this.logic.cell[this.playerRow][this.playerColumn - 1].getID() == 8) {
+            this.logic.cell[this.playerRow][this.playerColumn - 1].setLives(this.logic.cell[this.playerRow][this.playerColumn - 1].getLives() - 1);
+            if (this.logic.cell[this.playerRow][this.playerColumn - 1].getLives() == 0) {
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).suspend();
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).stop();
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).destroy();
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).wait();
 //            threadsList.remove(this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()));
 
-            this.logic.cell[this.playerRow][this.playerColumn - 1].setIdAndImage(0);
-            this.logic.cell[this.playerRow][this.playerColumn - 1].setIdThread(-1);
-            updateInterface();
-            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Pacman-death-sound.mp3").toString());
-            note.play();
+                this.logic.cell[this.playerRow][this.playerColumn - 1].setIdAndImage(0);
+                this.logic.cell[this.playerRow][this.playerColumn - 1].setIdThread(-1);
+                updateInterface();
+                AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Pacman-death-sound.mp3").toString());
+                note.play();
+            }
         }
     }
 
