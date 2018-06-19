@@ -465,6 +465,8 @@ public class FXMLDocumentController implements Initializable {
             this.logic.cell[this.playerRow][this.playerColumn + 1].setIdAndImage(0);
             this.logic.cell[this.playerRow][this.playerColumn + 1].setIdThread(-1);
             updateInterface();
+            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Pacman-death-sound.mp3").toString());
+            note.play();
         }
     }
 
@@ -483,6 +485,8 @@ public class FXMLDocumentController implements Initializable {
             this.logic.cell[this.playerRow][this.playerColumn - 1].setIdAndImage(0);
             this.logic.cell[this.playerRow][this.playerColumn - 1].setIdThread(-1);
             updateInterface();
+            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Pacman-death-sound.mp3").toString());
+            note.play();
         }
     }
 
