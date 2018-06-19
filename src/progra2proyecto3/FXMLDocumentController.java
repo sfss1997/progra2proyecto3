@@ -170,21 +170,21 @@ public class FXMLDocumentController implements Initializable {
             }
 
             //cambiar armas del personaje
-            if (e.getCode() == KeyCode.DIGIT1) {
+            if (e.getCode() == KeyCode.A) {
                 this.player.changeWeapons(1);
                 try {
                     updateInterface();
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else if (e.getCode() == KeyCode.DIGIT2) {
+            } else if (e.getCode() == KeyCode.S) {
                 this.player.changeWeapons(2);
                 try {
                     updateInterface();
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else if (e.getCode() == KeyCode.DIGIT3) {
+            } else if (e.getCode() == KeyCode.D) {
                 this.player.changeWeapons(3);
                 try {
                     updateInterface();
@@ -193,35 +193,7 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
 
-            if (e.getCode() == KeyCode.A) {
-                this.player.setLive(0);
-                try {
-                    updateInterface();
-                } catch (IOException ex) {
-                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else if (e.getCode() == KeyCode.S) {
-                this.player.setLive(1);
-                try {
-                    updateInterface();
-                } catch (IOException ex) {
-                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else if (e.getCode() == KeyCode.D) {
-                this.player.setLive(2);
-                try {
-                    updateInterface();
-                } catch (IOException ex) {
-                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else if (e.getCode() == KeyCode.F) {
-                this.player.setLive(3);
-                try {
-                    updateInterface();
-                } catch (IOException ex) {
-                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+            
 
             if (e.isControlDown() && e.getCode() == KeyCode.RIGHT) {
                 this.player.removeEarthRight();
