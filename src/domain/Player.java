@@ -103,6 +103,7 @@ public class Player {
             this.playerRow--;
             AudioClip note = new AudioClip(this.getClass().getResource("/sounds/salto.mp3").toString());
             note.play();
+            playerLives();
         }
         playerWay(this.weapon, this.way);
     }
@@ -113,6 +114,7 @@ public class Player {
             this.playerRow++;
             AudioClip note = new AudioClip(this.getClass().getResource("/sounds/salto.mp3").toString());
             note.play();
+            playerLives();
         }
         playerWay(this.weapon, this.way);
     }
@@ -129,6 +131,7 @@ public class Player {
             }
             AudioClip note = new AudioClip(this.getClass().getResource("/sounds/salto.mp3").toString());
             note.play();
+            playerLives();
         }
 
         playerWay(this.weapon, PlayerWay.LEFT);
@@ -146,8 +149,22 @@ public class Player {
             }
             AudioClip note = new AudioClip(this.getClass().getResource("/sounds/salto.mp3").toString());
             note.play();
+            playerLives();
         }
         playerWay(this.weapon, PlayerWay.RIGHT);
+    }
+    
+    public void playerLives(){
+    
+        if(this.logic.cell[this.playerRow][this.playerColumn-1].getID()==7){
+            this.live=this.live-1;
+        }else if(this.logic.cell[this.playerRow][this.playerColumn-1].getID()==8){
+            this.live=this.live-1;
+        }else if(this.logic.cell[this.playerRow][this.playerColumn+1].getID()==7){
+            this.live=this.live-1;
+        }else if(this.logic.cell[this.playerRow][this.playerColumn+1].getID()==8){
+            this.live=this.live-1;
+        }
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////

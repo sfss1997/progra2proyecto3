@@ -104,6 +104,8 @@ public class MenuController implements Initializable {
         window.setResizable(false);
         window.setX(0);
         window.setY(0);
+        
+        window.setFullScreen(true);
         window.show();
     }
     

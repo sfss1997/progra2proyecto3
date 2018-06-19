@@ -25,6 +25,7 @@ public class Cell extends Pane {
     private int column;
     private PlayerWay playerWay;
     int idThread;
+    private int lives ;
 
     public Cell(int i) {
         if (i == 0) {
@@ -43,6 +44,7 @@ public class Cell extends Pane {
             this.playerWay = PlayerWay.LEFT;
         }
         this.idThread = -1;
+        this.lives = 3;
 
     }
 
@@ -93,6 +95,16 @@ public class Cell extends Pane {
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+    
+    
 
     /**
      * 0 = Nada 1 = Espada Derecha 2 = Espada Izquierda 3 = Latigo Derecha 4 =

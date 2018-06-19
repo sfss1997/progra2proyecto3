@@ -19,37 +19,54 @@ public class Chimera {
     private int chimeraRow;
     private int chimeraColumn;
     private static int idThread;
+    
 
     public Chimera(int idThread) {
         this.logic = new Logic();
         this.idThread = idThread;
+        
         findEarth();
+        
+        
 
+    }
+
+    public Chimera(int chimeraRow, int chimeraColumn) {
+        this.chimeraRow = chimeraRow;
+        this.chimeraColumn = chimeraColumn;
     }
 
     public void chimeraUp() {
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdAndImage(0);
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdThread(-1);
+        int lives = this.logic.cell[this.chimeraRow][this.chimeraColumn].getLives();
+        this.logic.cell[this.chimeraRow][this.chimeraColumn].setLives(-1);
         if (this.chimeraRow > 0 && this.logic.cell[this.chimeraRow - 1][this.chimeraColumn].getID() == 0) {
             this.chimeraRow--;
         }
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdAndImage(7);
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdThread(idThread);
+        this.logic.cell[this.chimeraRow][this.chimeraColumn].setLives(lives);
     }
 
     public void chimeraDown() {
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdAndImage(0);
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdThread(-1);
+        int lives = this.logic.cell[this.chimeraRow][this.chimeraColumn].getLives();
+        this.logic.cell[this.chimeraRow][this.chimeraColumn].setLives(-1);
         if (chimeraRow < this.logic.cell.length - 1 && this.logic.cell[this.chimeraRow + 1][this.chimeraColumn].getID() == 0) {
             this.chimeraRow++;
         }
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdAndImage(7);
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdThread(idThread);
+        this.logic.cell[this.chimeraRow][this.chimeraColumn].setLives(lives);
     }
 
     public void chimeraLeft() {
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdAndImage(0);
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdThread(-1);
+        int lives = this.logic.cell[this.chimeraRow][this.chimeraColumn].getLives();
+        this.logic.cell[this.chimeraRow][this.chimeraColumn].setLives(-1);
         if (this.chimeraColumn > 0 && this.logic.cell[this.chimeraRow][this.chimeraColumn - 1].getID() == 0 /*&& isEarthLeft() == true*/) {
             this.chimeraColumn--;
             if (this.logic.cell[this.chimeraRow + 1][this.chimeraColumn].getID() != 7
@@ -61,11 +78,14 @@ public class Chimera {
         }
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdAndImage(7);
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdThread(idThread);
+        this.logic.cell[this.chimeraRow][this.chimeraColumn].setLives(lives);
     }
 
     public void chimeraRight() {
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdAndImage(0);
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdThread(-1);
+        int lives = this.logic.cell[this.chimeraRow][this.chimeraColumn].getLives();
+        this.logic.cell[this.chimeraRow][this.chimeraColumn].setLives(-1);
         if (chimeraColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.chimeraRow][this.chimeraColumn + 1].getID() == 0 /*&& isEarthRight() == true*/) {
             this.chimeraColumn++;        this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdThread(idThread);
 
@@ -78,6 +98,7 @@ public class Chimera {
         }
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdAndImage(7);
         this.logic.cell[this.chimeraRow][this.chimeraColumn].setIdThread(idThread);
+        this.logic.cell[this.chimeraRow][this.chimeraColumn].setLives(lives);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////
@@ -134,5 +155,9 @@ public class Chimera {
             }
         }
     }
+
+    
+    
+    
 
 }

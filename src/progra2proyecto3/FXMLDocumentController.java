@@ -8,6 +8,7 @@ package progra2proyecto3;
 import domain.Chimera;
 import domain.Zombie;
 import domain.Player;
+import java.io.IOException;
 import logic.Logic;
 import java.net.URL;
 import java.util.LinkedList;
@@ -18,7 +19,11 @@ import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -27,6 +32,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Line;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import logic.Live;
 import static logic.Logic.configuration;
@@ -71,16 +77,23 @@ public class FXMLDocumentController implements Initializable {
         this.threadsList = new LinkedList<>();
         this.idThread = 0;
         
-        updateInterface();
+        try {
+            updateInterface();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         addKeyAction();
         godThread();
-
+        moveThread();
 //        AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Indiana Jones Theme 8-Bit.mp3").toString());
 //        note.play();
     }
 
-    private void updateInterface() {
+    private void updateInterface() throws IOException {
 
+        if(this.player.getLive()<0){
+            cambioScene("/progra2proyecto3/GameOver.fxml");
+        }
         caca.getGraphicsContext2D().clearRect(0, 0, configuration.getWidth() * 75, configuration.getHeight() * 75);
         for (int i = 0; i < this.logic.cell.length; i++) {
             for (int j = 0; j < this.logic.cell[0].length; j++) {
@@ -127,61 +140,121 @@ public class FXMLDocumentController implements Initializable {
             //mover al personaje
             if (e.getCode() == KeyCode.RIGHT) {
                 this.player.playerRight();
-                updateInterface();
+                try {
+                    updateInterface();
 //                downThread();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else if (e.getCode() == KeyCode.LEFT) {
                 this.player.playerLeft();
-                updateInterface();
+                try {
+                    updateInterface();
 //                downThread();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else if (e.getCode() == KeyCode.UP) {
                 this.player.playerUp();
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else if (e.getCode() == KeyCode.DOWN) {
                 this.player.playerDown();
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
             //cambiar armas del personaje
             if (e.getCode() == KeyCode.DIGIT1) {
                 this.player.changeWeapons(1);
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else if (e.getCode() == KeyCode.DIGIT2) {
                 this.player.changeWeapons(2);
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else if (e.getCode() == KeyCode.DIGIT3) {
                 this.player.changeWeapons(3);
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             
             if (e.getCode() == KeyCode.A) {
                 this.player.setLive(0);
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else if (e.getCode()== KeyCode.S) {
                 this.player.setLive(1);
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else if (e.getCode()== KeyCode.D) {
                 this.player.setLive(2);
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else if (e.getCode()== KeyCode.F) {
                 this.player.setLive(3);
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             
             if (e.isControlDown() && e.getCode() == KeyCode.RIGHT) {
                 this.player.removeEarthRight();
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             } else if (e.isControlDown() && e.getCode() == KeyCode.LEFT) {
                 this.player.removeEarthLeft();
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                
             } else if (e.isControlDown() && e.getCode() == KeyCode.UP) {
                 this.player.removeEarthUp();
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             } else if (e.isControlDown() && e.getCode() == KeyCode.DOWN) {
                 this.player.removeEarthDown();
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
             
@@ -191,29 +264,40 @@ public class FXMLDocumentController implements Initializable {
                     atackRight();
                 } catch (InterruptedException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             } else if (e.isAltDown()&& e.getCode() == KeyCode.LEFT) {
                 try {
                     atackLeft();
                 } catch (InterruptedException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                updateInterface();
+                try {
+                    updateInterface();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                
             }
         });
 
     }
 
-    private void zombieThread() {
-        Runnable runnable = () -> {
+    private void zombieThread(int row, int column) throws IOException {
+        
 
-            Zombie h = new Zombie(this.idThread);
-            this.idThread++;
+            Zombie h = new Zombie(row, column);
+            
             int random;
-            while (true) {
                 random = (int) (Math.random() * 4);
 
                 if (random == 0) {
@@ -229,30 +313,16 @@ public class FXMLDocumentController implements Initializable {
                     h.zombieRight();
                     updateInterface();
                 }
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Zombie.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        };
-        Thread t = new Thread(runnable);
-        threadsList.add(t);
-        if(threadsList.isEmpty()){
-            threadsList.get(0).start();
-        } else {
-            threadsList.get(threadsList.size()-1).start();
-        }
+                
+            
+        
 
     }
 
-    private void chimeraThread() {
-        Runnable runnable = () -> {
+    private void chimeraThread(int row,int column) throws IOException {
 
-            Chimera c = new Chimera(this.idThread);
-            this.idThread++;
+            Chimera c = new Chimera(row, column);
             int random;
-            while (true) {
                 random = (int) (Math.random() * 4);
 
                 if (random == 0) {
@@ -268,29 +338,56 @@ public class FXMLDocumentController implements Initializable {
                     c.chimeraRight();
                     updateInterface();
                 }
+                
+
+    }
+    
+    private void moveThread(){
+        Runnable runnable = () -> {
+            while(true){
+                for (int i = 0; i < this.logic.cell.length; i++) {
+                    for (int j = 0; j < this.logic.cell[0].length; j++) {
+                        if(this.logic.cell[i][j].getID() == 7){
+                            try {
+                                chimeraThread(i, j);
+                            } catch (IOException ex) {
+                                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            try {
+                                updateInterface();
+                            } catch (IOException ex) {
+                                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        } else if(this.logic.cell[i][j].getID() == 8){
+                            try {
+                                zombieThread(i, j);
+                            } catch (IOException ex) {
+                                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            try {
+                                updateInterface();
+                            } catch (IOException ex) {
+                                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }
+                }
                 try {
-                    Thread.sleep(1500);
+                    Thread.sleep(1000);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(Chimera.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
         Thread t = new Thread(runnable);
-        threadsList.add(t);
-        if(threadsList.isEmpty()){
-            threadsList.get(0).start();
-        } else {
-            threadsList.get(threadsList.size()-1).start();
-        }
-
+        t.start();
     }
 
     private void godThread() {
+        
         Runnable runnable = () -> {
 
-            for (int i = 0; i < 100; i++) {
-                
-            
+                while(true) {
                 int random = (int) ((Math.random() * 101) + 1);
                 int stone = configuration.getProbabilities().getStone();
                 int zombie = stone + configuration.getProbabilities().getZombie();
@@ -304,16 +401,26 @@ public class FXMLDocumentController implements Initializable {
                         System.out.print("God crea tierra");
                     }
                 } else if (random > stone && random <= zombie && limZ > 0) {
-                    zombieThread();
+                    new Zombie(idThread);
+                    try {
+                        updateInterface();
+                    } catch (IOException ex) {
+                        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     System.out.print("God crea un nuevo zombie");
-                    limZ--;
+//                    limZ--;
                 } else if (random > zombie && random <= chimera && limC > 0) {
-                    chimeraThread();
+                    new Chimera(idThread);
+                    try {
+                        updateInterface();
+                    } catch (IOException ex) {
+                        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     System.out.print("God crea un nuevo dragón");
-                    limC--;
+//                    limC--;
                 }
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1200);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -321,43 +428,64 @@ public class FXMLDocumentController implements Initializable {
         };
         Thread t = new Thread(runnable);
         t.start();
-
+        
     }
 
     @FXML
-    private void x(ActionEvent event) {
+    private void x(ActionEvent event) throws IOException {
         this.player.playerRight();
         updateInterface();
     }
     
-    public void atackRight() throws InterruptedException{
+    public void atackRight() throws InterruptedException, IOException{
         this.playerRow = this.player.getPlayerRow();
         this.playerColumn = this.player.getPlayerColumn();
-        if(playerColumn < this.logic.cell[0].length - 1 && this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread() != -1){
+        this.logic.cell[this.playerRow][this.playerColumn+1].setLives(this.logic.cell[this.playerRow][this.playerColumn+1].getLives()-1);
+        if(this.logic.cell[this.playerRow][this.playerColumn+1].getLives()==0){
             System.out.println(">>>>>>>>>> " + this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread());
-            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).suspend();
-            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).stop();
-            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).destroy();
+//            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).suspend();
+//            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).stop();
+//            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).destroy();
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).wait();
 //            threadsList.remove(this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()));
             this.logic.cell[this.playerRow][this.playerColumn + 1].setIdAndImage(0);
             this.logic.cell[this.playerRow][this.playerColumn + 1].setIdThread(-1);
+            updateInterface();
         }
     }
     
-    public void atackLeft() throws InterruptedException{
+    public void atackLeft() throws InterruptedException, IOException{
         this.playerRow = this.player.getPlayerRow();
         this.playerColumn = this.player.getPlayerColumn();
-        if(this.playerColumn > 0 && this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread() != -1){
-            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).suspend();
-            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).stop();
-            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).destroy();
+        
+      this.logic.cell[this.playerRow][this.playerColumn-1].setLives(this.logic.cell[this.playerRow][this.playerColumn-1].getLives()-1);
+      if(this.logic.cell[this.playerRow][this.playerColumn-1].getLives()==0){
+//            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).suspend();
+//            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).stop();
+//            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).destroy();
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).wait();
 //            threadsList.remove(this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()));
            
-            this.logic.cell[this.playerRow][this.playerColumn + 1].setIdAndImage(0);
-            this.logic.cell[this.playerRow][this.playerColumn + 1].setIdThread(-1);
+            this.logic.cell[this.playerRow][this.playerColumn - 1].setIdAndImage(0);
+            this.logic.cell[this.playerRow][this.playerColumn - 1].setIdThread(-1);
+            updateInterface();
         }
+    }
+    
+    private void cambioScene( String destino) throws IOException{
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource(destino));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //Esta linea obtiene la informacion del Stage
+        Stage window = (Stage) ((Node) anchorPane).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.setResizable(false);
+        window.setX(0);
+        window.setY(0);
+        window.setFullScreen(true);
+        window.show();
+        
     }
 
 }
