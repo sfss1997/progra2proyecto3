@@ -8,6 +8,7 @@ package progra2proyecto3;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.scene.media.AudioClip;
 
 /**
  * FXML Controller class
@@ -22,6 +23,8 @@ public class GameOverController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        AudioClip note = new AudioClip(this.getClass().getResource("/sounds/mario-bros game over.mp3").toString());
+        note.play();
     }    
     
 }

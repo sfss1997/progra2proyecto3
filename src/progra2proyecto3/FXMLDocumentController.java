@@ -62,21 +62,20 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        
+
         this.limC = 3;
         this.limZ = 5;
-        
+
         this.logic = new Logic();
         this.anchorPane.setPrefSize(configuration.getWidth() * 75, configuration.getHeight() * 75);
         this.caca.setHeight(configuration.getHeight() * 75);
         this.caca.setWidth(configuration.getWidth() * 75);
         this.logic.createCell();
         this.player = new Player();
-        
+
         this.threadsList = new LinkedList<>();
         this.idThread = 0;
-        
+
         try {
             updateInterface();
         } catch (IOException ex) {
@@ -85,13 +84,14 @@ public class FXMLDocumentController implements Initializable {
         addKeyAction();
         godThread();
         moveThread();
-//        AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Indiana Jones Theme 8-Bit.mp3").toString());
-//        note.play();
+        playerLivesThread();
+        AudioClip note = new AudioClip(this.getClass().getResource("/sounds/Indiana Jones Theme 8-Bit.mp3").toString());
+        note.play();
     }
 
     private void updateInterface() throws IOException {
 
-        if(this.player.getLive()<0){
+        if (this.player.getLive() < 0) {
             cambioScene("/progra2proyecto3/GameOver.fxml");
         }
         caca.getGraphicsContext2D().clearRect(0, 0, configuration.getWidth() * 75, configuration.getHeight() * 75);
@@ -106,34 +106,33 @@ public class FXMLDocumentController implements Initializable {
 
             }
         }
-        if(player.getLive()==3){
+        if (player.getLive() == 3) {
             this.logic.live[0].setIdAndImage(1);
             this.logic.live[1].setIdAndImage(1);
             this.logic.live[2].setIdAndImage(1);
-        }else if(player.getLive()==2){
+        } else if (player.getLive() == 2) {
             this.logic.live[0].setIdAndImage(0);
             this.logic.live[1].setIdAndImage(1);
             this.logic.live[2].setIdAndImage(1);
-        }else if(player.getLive()==1){
+        } else if (player.getLive() == 1) {
             this.logic.live[0].setIdAndImage(0);
             this.logic.live[1].setIdAndImage(0);
             this.logic.live[2].setIdAndImage(1);
-        }else if(player.getLive()==0){
+        } else if (player.getLive() == 0) {
             this.logic.live[0].setIdAndImage(0);
             this.logic.live[1].setIdAndImage(0);
             this.logic.live[2].setIdAndImage(0);
         }
         for (int i = 0; i < 3; i++) {
             Image imageView = this.logic.live[i].getImage();
-            
-            int x=(configuration.getWidth()* 75)-30;
-            int y= i*30;
+
+            int x = (configuration.getWidth() * 75) - 30;
+            int y = i * 30;
             caca.getGraphicsContext2D().drawImage(imageView, x, y);
-            
+
         }
 
     }
-    
 
     public void addKeyAction() {
         anchorPane.setOnKeyPressed(e -> {
@@ -193,7 +192,7 @@ public class FXMLDocumentController implements Initializable {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            
+
             if (e.getCode() == KeyCode.A) {
                 this.player.setLive(0);
                 try {
@@ -201,21 +200,21 @@ public class FXMLDocumentController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else if (e.getCode()== KeyCode.S) {
+            } else if (e.getCode() == KeyCode.S) {
                 this.player.setLive(1);
                 try {
                     updateInterface();
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else if (e.getCode()== KeyCode.D) {
+            } else if (e.getCode() == KeyCode.D) {
                 this.player.setLive(2);
                 try {
                     updateInterface();
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else if (e.getCode()== KeyCode.F) {
+            } else if (e.getCode() == KeyCode.F) {
                 this.player.setLive(3);
                 try {
                     updateInterface();
@@ -223,7 +222,7 @@ public class FXMLDocumentController implements Initializable {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            
+
             if (e.isControlDown() && e.getCode() == KeyCode.RIGHT) {
                 this.player.removeEarthRight();
                 try {
@@ -231,7 +230,7 @@ public class FXMLDocumentController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             } else if (e.isControlDown() && e.getCode() == KeyCode.LEFT) {
                 this.player.removeEarthLeft();
                 try {
@@ -239,7 +238,7 @@ public class FXMLDocumentController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
+
             } else if (e.isControlDown() && e.getCode() == KeyCode.UP) {
                 this.player.removeEarthUp();
                 try {
@@ -247,7 +246,7 @@ public class FXMLDocumentController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             } else if (e.isControlDown() && e.getCode() == KeyCode.DOWN) {
                 this.player.removeEarthDown();
                 try {
@@ -255,11 +254,11 @@ public class FXMLDocumentController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
-            
+
             //ataca
-            if (e.isAltDown()&& e.getCode() == KeyCode.RIGHT) {
+            if (e.isAltDown() && e.getCode() == KeyCode.RIGHT) {
                 try {
                     atackRight();
                 } catch (InterruptedException ex) {
@@ -272,8 +271,8 @@ public class FXMLDocumentController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-            } else if (e.isAltDown()&& e.getCode() == KeyCode.LEFT) {
+
+            } else if (e.isAltDown() && e.getCode() == KeyCode.LEFT) {
                 try {
                     atackLeft();
                 } catch (InterruptedException ex) {
@@ -286,68 +285,63 @@ public class FXMLDocumentController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
+
             }
         });
 
     }
 
     private void zombieThread(int row, int column) throws IOException {
-        
 
-            Zombie h = new Zombie(row, column);
-            
-            int random;
-                random = (int) (Math.random() * 4);
+        Zombie h = new Zombie(row, column);
 
-                if (random == 0) {
-                    h.zombieUp();
-                    updateInterface();
-                } else if (random == 1) {
-                    h.zombieDown();
-                    updateInterface();
-                } else if (random == 2) {
-                    h.zombieLeft();
-                    updateInterface();
-                } else if (random == 3) {
-                    h.zombieRight();
-                    updateInterface();
-                }
-                
-            
-        
+        int random;
+        random = (int) (Math.random() * 4);
+
+        if (random == 0) {
+            h.zombieUp();
+            updateInterface();
+        } else if (random == 1) {
+            h.zombieDown();
+            updateInterface();
+        } else if (random == 2) {
+            h.zombieLeft();
+            updateInterface();
+        } else if (random == 3) {
+            h.zombieRight();
+            updateInterface();
+        }
 
     }
 
-    private void chimeraThread(int row,int column) throws IOException {
+    private void chimeraThread(int row, int column) throws IOException {
 
-            Chimera c = new Chimera(row, column);
-            int random;
-                random = (int) (Math.random() * 4);
+        Chimera c = new Chimera(row, column);
+        int random;
+        random = (int) (Math.random() * 4);
 
-                if (random == 0) {
-                    c.chimeraUp();
-                    updateInterface();
-                } else if (random == 1) {
-                    c.chimeraDown();
-                    updateInterface();
-                } else if (random == 2) {
-                    c.chimeraLeft();
-                    updateInterface();
-                } else if (random == 3) {
-                    c.chimeraRight();
-                    updateInterface();
-                }
-                
+        if (random == 0) {
+            c.chimeraUp();
+            updateInterface();
+        } else if (random == 1) {
+            c.chimeraDown();
+            updateInterface();
+        } else if (random == 2) {
+            c.chimeraLeft();
+            updateInterface();
+        } else if (random == 3) {
+            c.chimeraRight();
+            updateInterface();
+        }
 
     }
-    
-    private void moveThread(){
+
+    private void moveThread() {
         Runnable runnable = () -> {
-            while(true){
+            while (true) {
                 for (int i = 0; i < this.logic.cell.length; i++) {
                     for (int j = 0; j < this.logic.cell[0].length; j++) {
-                        if(this.logic.cell[i][j].getID() == 7){
+                        if (this.logic.cell[i][j].getID() == 7) {
                             try {
                                 chimeraThread(i, j);
                             } catch (IOException ex) {
@@ -358,7 +352,7 @@ public class FXMLDocumentController implements Initializable {
                             } catch (IOException ex) {
                                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                        } else if(this.logic.cell[i][j].getID() == 8){
+                        } else if (this.logic.cell[i][j].getID() == 8) {
                             try {
                                 zombieThread(i, j);
                             } catch (IOException ex) {
@@ -384,10 +378,10 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void godThread() {
-        
+
         Runnable runnable = () -> {
 
-                while(true) {
+            while (true) {
                 int random = (int) ((Math.random() * 101) + 1);
                 int stone = configuration.getProbabilities().getStone();
                 int zombie = stone + configuration.getProbabilities().getZombie();
@@ -420,7 +414,7 @@ public class FXMLDocumentController implements Initializable {
 //                    limC--;
                 }
                 try {
-                    Thread.sleep(1200);
+                    Thread.sleep(500);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -428,7 +422,27 @@ public class FXMLDocumentController implements Initializable {
         };
         Thread t = new Thread(runnable);
         t.start();
-        
+
+    }
+
+    private void playerLivesThread() {
+
+        Runnable runnable = () -> {
+            while (true) {
+                if (this.player.getLive() < 3) {
+                    this.player.setLive(this.player.getLive() + 1);
+                    AudioClip note = new AudioClip(this.getClass().getResource("/sounds/mario-bros vida.mp3").toString());
+                    note.play();
+                }
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        Thread t = new Thread(runnable);
+        t.start();
     }
 
     @FXML
@@ -436,12 +450,12 @@ public class FXMLDocumentController implements Initializable {
         this.player.playerRight();
         updateInterface();
     }
-    
-    public void atackRight() throws InterruptedException, IOException{
+
+    public void atackRight() throws InterruptedException, IOException {
         this.playerRow = this.player.getPlayerRow();
         this.playerColumn = this.player.getPlayerColumn();
-        this.logic.cell[this.playerRow][this.playerColumn+1].setLives(this.logic.cell[this.playerRow][this.playerColumn+1].getLives()-1);
-        if(this.logic.cell[this.playerRow][this.playerColumn+1].getLives()==0){
+        this.logic.cell[this.playerRow][this.playerColumn + 1].setLives(this.logic.cell[this.playerRow][this.playerColumn + 1].getLives() - 1);
+        if (this.logic.cell[this.playerRow][this.playerColumn + 1].getLives() == 0) {
             System.out.println(">>>>>>>>>> " + this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread());
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).suspend();
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn + 1].getIdThread()).stop();
@@ -453,39 +467,39 @@ public class FXMLDocumentController implements Initializable {
             updateInterface();
         }
     }
-    
-    public void atackLeft() throws InterruptedException, IOException{
+
+    public void atackLeft() throws InterruptedException, IOException {
         this.playerRow = this.player.getPlayerRow();
         this.playerColumn = this.player.getPlayerColumn();
-        
-      this.logic.cell[this.playerRow][this.playerColumn-1].setLives(this.logic.cell[this.playerRow][this.playerColumn-1].getLives()-1);
-      if(this.logic.cell[this.playerRow][this.playerColumn-1].getLives()==0){
+
+        this.logic.cell[this.playerRow][this.playerColumn - 1].setLives(this.logic.cell[this.playerRow][this.playerColumn - 1].getLives() - 1);
+        if (this.logic.cell[this.playerRow][this.playerColumn - 1].getLives() == 0) {
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).suspend();
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).stop();
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).destroy();
 //            this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()).wait();
 //            threadsList.remove(this.threadsList.get(this.logic.cell[this.playerRow][this.playerColumn - 1].getIdThread()));
-           
+
             this.logic.cell[this.playerRow][this.playerColumn - 1].setIdAndImage(0);
             this.logic.cell[this.playerRow][this.playerColumn - 1].setIdThread(-1);
             updateInterface();
         }
     }
-    
-    private void cambioScene( String destino) throws IOException{
+
+    private void cambioScene(String destino) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource(destino));
         Scene tableViewScene = new Scene(tableViewParent);
-        
+
         //Esta linea obtiene la informacion del Stage
         Stage window = (Stage) ((Node) anchorPane).getScene().getWindow();
-        
+
         window.setScene(tableViewScene);
         window.setResizable(false);
         window.setX(0);
         window.setY(0);
         window.setFullScreen(true);
         window.show();
-        
+
     }
 
 }

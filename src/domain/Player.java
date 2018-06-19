@@ -158,12 +158,20 @@ public class Player {
     
         if(this.logic.cell[this.playerRow][this.playerColumn-1].getID()==7){
             this.live=this.live-1;
+             AudioClip note = new AudioClip(this.getClass().getResource("/sounds/mario-bros-ooh.mp3").toString());
+             note.play();
         }else if(this.logic.cell[this.playerRow][this.playerColumn-1].getID()==8){
             this.live=this.live-1;
+            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/mario-bros-ooh.mp3").toString());
+             note.play();
         }else if(this.logic.cell[this.playerRow][this.playerColumn+1].getID()==7){
             this.live=this.live-1;
+            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/mario-bros-ooh.mp3").toString());
+             note.play();
         }else if(this.logic.cell[this.playerRow][this.playerColumn+1].getID()==8){
             this.live=this.live-1;
+            AudioClip note = new AudioClip(this.getClass().getResource("/sounds/mario-bros-ooh.mp3").toString());
+             note.play();
         }
     }
 
